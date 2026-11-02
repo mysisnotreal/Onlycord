@@ -12,8 +12,12 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                # ubuntu-22.04 keeps the Linux build compatible with older distros
-                os: [windows-latest, ubuntu-22.04, macos-latest]
+                include:
+                    - os: windows-latest
+                      asset: OnlycordInstaller
+                    # ubuntu-22.04 keeps the Linux build compatible with older distros
+                    - os: ubuntu-22.04
+                      asset: OnlycordInstaller-Linux
 
         steps:
             - uses: actions/checkout@v7
@@ -29,17 +33,50 @@ jobs:
               with:
                   python-version: "3.12"
 
+            - name: Install Tk and a virtual display
+              if: runner.os == 'Linux'
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y libtk8.6 xvfb
+
             - name: Install PyInstaller
               run: python -m pip install pyinstaller==6.16.0 pillow==11.1.0
 
-            - name: Build Onlycord and stage installer files
-              run: python installer/build.py stage --no-restore
+            - name: Build Onlycord
+              run: pnpm buildStandalone
 
             - name: Package installer
-              run: python installer/build.py package --out release
+              run: >-
+                  python -m PyInstaller --onefile --windowed --name ${{ matrix.asset }}
+                  --icon installer/image.png
+                  --add-data installer/image.png:.
+                  --add-data dist/desktop:onlycord
+                  --distpath release --workpath installer/.build
+                  installer/OnlycordInstaller.pyw
+
+            - name: Test installer on a fake Discord
+              if: runner.os == 'Linux'
+              run: |
+                  installer="$PWD/release/${{ matrix.asset }}"
+                  export XDG_CONFIG_HOME="$RUNNER_TEMP/config"
+                  resources="$RUNNER_TEMP/resources"
+                  mkdir -p "$resources"
+                  echo original > "$resources/app.asar"
+
+                  "$installer" --patch "$resources"
+                  test "$(cat "$resources/_app.asar")" = original
+                  grep -aq "$XDG_CONFIG_HOME/Onlycord/dist" "$resources/app.asar"
+                  test -f "$XDG_CONFIG_HOME/Onlycord/dist/patcher.js"
+
+                  "$installer" --unpatch "$resources"
+                  test "$(cat "$resources/app.asar")" = original
+                  test ! -e "$resources/_app.asar"
+
+                  # The window stays open until it's closed, so a timeout means it started fine
+                  timeout 15 xvfb-run -a "$installer" || test $? -eq 124
 
             - name: Upload installer
               uses: actions/upload-artifact@v4
               with:
-                  name: OnlycordInstaller-${{ runner.os }}
+                  name: ${{ matrix.asset }}
                   path: release/*
