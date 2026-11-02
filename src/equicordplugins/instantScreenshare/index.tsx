@@ -7,7 +7,7 @@
 import { getUserSettingLazy } from "@api/UserSettings";
 import { HeadingSecondary } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { VoiceState } from "@vencord/discord-types";
 import { findByCodeLazy } from "@webpack";
@@ -62,8 +62,8 @@ export default definePlugin({
     name: "InstantScreenshare",
     description: "Instantly screenshare when joining a voice channel with support for desktop sources, windows, and video input devices (cameras, capture cards)",
     tags: ["Media", "Voice"],
-    authors: [Devs.HAHALOSAH, Devs.thororen, StarcordDevs.mart],
-    dependencies: ["StarcordToolbox"],
+    authors: [Devs.HAHALOSAH, Devs.thororen, OnlycordDevs.mart],
+    dependencies: ["OnlycordToolbox"],
     searchTerms: ["ScreenshareKeybind"],
     autoStartStream,
     settings,

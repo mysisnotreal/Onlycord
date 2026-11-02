@@ -12,7 +12,7 @@ permissions:
 
 jobs:
     Build:
-        name: Build Starcord
+        name: Build Onlycord
         runs-on: ubuntu-latest
 
         steps:
@@ -34,7 +34,7 @@ jobs:
               run: |
                   pnpm generatePluginJson dist/plugins.json
                   pnpm generateEquicordPluginJson dist/equicordplugins.json
-                  pnpm generateStarcordPluginJson dist/starcordplugins.json
+                  pnpm generateOnlycordPluginJson dist/onlycordplugins.json
                   pnpm generateVencordPluginJson dist/vencordplugins.json
                   pnpm generateDevsList dist/devs.json
 
@@ -44,7 +44,7 @@ jobs:
                   mkdir release
 
                   cp browser/browser.* release
-                  cp Starcord.user.{js,js.LEGAL.txt} release
+                  cp Onlycord.user.{js,js.LEGAL.txt} release
 
                   # copy the plugin data jsons, the extension zips and the desktop/equibop asars
                   cp *.{json,zip,asar} release
@@ -64,7 +64,7 @@ jobs:
               id: date
               run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
-            - name: Upload Starcord Stable
+            - name: Upload Onlycord Stable
               if: ${{ vars.ACT == 'false' }}
               run: |
                   gh release create ${{ steps.date.outputs.date }} --latest=false

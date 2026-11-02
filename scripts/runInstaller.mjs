@@ -71,7 +71,7 @@ async function ensureBinary() {
 
     const res = await fetch(BASE_URL + filename, {
         headers: {
-            "User-Agent": "Starcord",
+            "User-Agent": "Onlycord",
             "If-None-Match": etag
         }
     });

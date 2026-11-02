@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { makeContextItem } from "./components";
@@ -15,7 +15,7 @@ export default definePlugin({
     name: "CustomFolderIcons",
     description: "Customize folder icons with any png",
     tags: ["Appearance", "Customisation", "Organisation"],
-    authors: [StarcordDevs.sadan],
+    authors: [OnlycordDevs.sadan],
     settings,
     patches: [
         {

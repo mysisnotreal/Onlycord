@@ -2,7 +2,7 @@ blank_issues_enabled: false
 contact_links:
     - name: 💬 Discord Community
       url: https://discord.gg/DdYg5CrkXz
-      about: For plugin requests, support questions, and general help, join the Starcord Discord server
+      about: For plugin requests, support questions, and general help, join the Onlycord Discord server
     - name: ⬆️ Upstream Equicord
       url: https://github.com/Equicord/Equicord
       about: If the issue also happens on Equicord, it most likely needs to be fixed upstream

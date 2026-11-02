@@ -69,7 +69,7 @@ export function BetterDiscordThemesSection({ installedFileNames, onInstalled }: 
             </Paragraph>
 
             {IS_WEB ? (
-                <Notice.Info>Browsing BetterDiscord themes is only available in the desktop version of Starcord.</Notice.Info>
+                <Notice.Info>Browsing BetterDiscord themes is only available in the desktop version of Onlycord.</Notice.Info>
             ) : pending ? (
                 <Paragraph color="text-muted">Loading BetterDiscord themes...</Paragraph>
             ) : !result?.success ? (

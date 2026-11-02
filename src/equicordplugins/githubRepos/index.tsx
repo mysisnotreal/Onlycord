@@ -8,7 +8,7 @@ import "./styles.css";
 
 import { definePluginSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
 import { User } from "@vencord/discord-types";
@@ -40,7 +40,7 @@ export default definePlugin({
     description: "Displays a user's public GitHub repositories in their profile",
     dependencies: ["ProfileCollectionsAPI"],
     tags: ["Appearance"],
-    authors: [StarcordDevs.talhakf, StarcordDevs.Panniku, StarcordDevs.benjii],
+    authors: [OnlycordDevs.talhakf, OnlycordDevs.Panniku, OnlycordDevs.benjii],
     settings,
 
     patches: [

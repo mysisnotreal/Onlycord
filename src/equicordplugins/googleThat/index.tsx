@@ -6,7 +6,7 @@
 
 import { ApplicationCommandOptionType, findOption } from "@api/Commands";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 function getMessage(opts) {
@@ -77,7 +77,7 @@ export default definePlugin({
     description: "Adds a command to send a internet search link",
     dependencies: ["CommandsAPI"],
     tags: ["Commands", "Utility"],
-    authors: [Devs.Samwich, StarcordDevs.KrystalSkull],
+    authors: [Devs.Samwich, OnlycordDevs.KrystalSkull],
     searchTerms: ["search", "google", "query", "duckduckgo", "command"],
     settings,
     commands: [

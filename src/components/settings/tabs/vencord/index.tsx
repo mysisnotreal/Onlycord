@@ -29,14 +29,14 @@ import { isAnyPluginDev } from "@utils/misc";
 import { relaunch } from "@utils/native";
 import { promptToRestart } from "@utils/promptToRestart";
 import { GuildMemberStore, React, UserStore } from "@webpack/common";
-import starcordIcon from "file://starcord.png?base64";
+import onlycordIcon from "file://onlycord.png?base64";
 
 import { InviteButtonComponent } from "./DonateButton";
 import { MacOSVibrancySettings } from "./MacVibrancySettings";
 import { NotificationSection } from "./NotificationSettings";
 import { WindowsMaterialSettings } from "./WindowsMaterialSettings";
 
-const STARCORD_IMAGE = `data:image/png;base64,${starcordIcon}`;
+const ONLYCORD_IMAGE = `data:image/png;base64,${onlycordIcon}`;
 
 function starPolygon(x: number, y: number, size: number) {
     const points = Array.from({ length: 10 }, (_, i) => {
@@ -191,21 +191,21 @@ function Switches() {
     });
 }
 
-function StarcordSettings() {
+function OnlycordSettings() {
     const user = UserStore?.getCurrentUser();
 
     return (
         <SettingsTab>
-            {(isStarcordDonor(user?.id) || isVencordDonor(user?.id)) ? (
+            {(isOnlycordDonor(user?.id) || isVencordDonor(user?.id)) ? (
                 <SpecialCard
                     title="Donations"
                     subtitle="Thank you for donating!"
                     description={
-                        isStarcordDonor(user?.id) && isVencordDonor(user?.id)
-                            ? "All Vencord users can see your Vencord donor badge, and Equicord and Starcord users can see your Equicord donor badge. To change your Vencord donor badge, contact @vending.machine. For your Equicord donor badge, make a ticket in Equicord's server."
+                        isOnlycordDonor(user?.id) && isVencordDonor(user?.id)
+                            ? "All Vencord users can see your Vencord donor badge, and Equicord and Onlycord users can see your Equicord donor badge. To change your Vencord donor badge, contact @vending.machine. For your Equicord donor badge, make a ticket in Equicord's server."
                             : isVencordDonor(user?.id)
                                 ? "All Vencord users can see your badge! You can manage your perks by messaging @vending.machine."
-                                : "All Equicord and Starcord users can see your badge! You can manage your perks by making a ticket in Equicord's server."
+                                : "All Equicord and Onlycord users can see your badge! You can manage your perks by making a ticket in Equicord's server."
                     }
                     cardImage={VENNIE_DONATOR_IMAGE}
                     backgroundImage={DONOR_BACKGROUND_IMAGE}
@@ -215,9 +215,9 @@ function StarcordSettings() {
                 </SpecialCard>
             ) : (
                 <SpecialCard
-                    title="Starcord Community"
-                    description="Join the Starcord Discord server to chat, get help and see what's coming next!"
-                    cardImage={STARCORD_IMAGE}
+                    title="Onlycord Community"
+                    description="Join the Onlycord Discord server to chat, get help and see what's coming next!"
+                    cardImage={ONLYCORD_IMAGE}
                     backgroundImage={STAR_BACKGROUND}
                     backgroundColor="#a8dcf7"
                 >
@@ -228,7 +228,7 @@ function StarcordSettings() {
                 <SpecialCard
                     title="Contributions"
                     subtitle="Thank you for contributing!"
-                    description="Since you've contributed to Starcord you now have a cool new badge!"
+                    description="Since you've contributed to Onlycord you now have a cool new badge!"
                     cardImage={COZY_CONTRIB_IMAGE}
                     backgroundImage={CONTRIB_BACKGROUND_IMAGE}
                     backgroundColor="#EDCC87"
@@ -291,7 +291,7 @@ function StarcordSettings() {
 
             <Heading className={Margins.top20}>Client Settings</Heading>
             <Paragraph className={Margins.bottom16}>
-                Configure how Starcord behaves and integrates with Discord. These settings affect the Discord client's appearance and behavior.
+                Configure how Onlycord behaves and integrates with Discord. These settings affect the Discord client's appearance and behavior.
             </Paragraph>
             <Notice.Info className={Margins.bottom20} style={{ width: "100%" }}>
                 You can customize where this settings section appears in Discord's settings menu by configuring the{" "}
@@ -314,10 +314,10 @@ function StarcordSettings() {
     );
 }
 
-export default wrapTab(StarcordSettings, "Starcord Settings");
+export default wrapTab(OnlycordSettings, "Onlycord Settings");
 
-export function isStarcordDonor(userId: string): boolean {
-    const donorBadges = BadgeAPI.getStarcordDonorBadges(userId);
+export function isOnlycordDonor(userId: string): boolean {
+    const donorBadges = BadgeAPI.getOnlycordDonorBadges(userId);
     return GuildMemberStore.getMember(GUILD_ID, userId)?.roles.includes(DONOR_ROLE_ID) || !!donorBadges;
 }
 

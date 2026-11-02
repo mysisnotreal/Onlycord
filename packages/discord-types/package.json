@@ -1,6 +1,6 @@
 {
-    "name": "@starcord/discord-types",
-    "author": "Starcord, Equicord & Vencord Contributors",
+    "name": "@onlycord/discord-types",
+    "author": "Onlycord, Equicord & Vencord Contributors",
     "private": false,
     "description": "Typescript definitions for the webpack modules of the Discord Web app",
     "version": "1.0.5",

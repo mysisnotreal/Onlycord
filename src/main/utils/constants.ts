@@ -17,16 +17,42 @@
 */
 
 import { app } from "electron";
-import { copyFileSync, existsSync, readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+import { copyFileSync, cpSync, existsSync, readFileSync, renameSync, writeFileSync } from "fs";
+import { basename, dirname, join } from "path";
 
 const suffix = IS_DEV ? "dev" : "";
 
-export const DATA_DIR = process.env.STARCORD_USER_DATA_DIR ?? (
-    process.env.DISCORD_USER_DATA_DIR
-        ? join(process.env.DISCORD_USER_DATA_DIR, "..", "StarcordData", suffix)
-        : join(app.getPath("userData"), "..", "Starcord", suffix)
-);
+const parentDir = process.env.DISCORD_USER_DATA_DIR ? join(process.env.DISCORD_USER_DATA_DIR, "..") : join(app.getPath("userData"), "..");
+const baseDir = join(parentDir, process.env.DISCORD_USER_DATA_DIR ? "OnlycordData" : "Onlycord");
+
+// Copies data from before the rename to Starcord's successor. Old dist folders stay behind, Discord may still be loading from them
+function migrateFromStarcord(oldDir: string, newDir: string) {
+    if (existsSync(newDir) || !existsSync(oldDir)) return;
+
+    try {
+        const tempDir = `${newDir}.migrating`;
+        cpSync(oldDir, tempDir, {
+            recursive: true,
+            filter: src => !(dirname(src) === oldDir && basename(src).startsWith("dist"))
+        });
+
+        // Settings hold plugin names, absolute paths into the old folder and format strings like {starcordVersion}
+        const settingsFile = join(tempDir, "settings", "settings.json");
+        if (existsSync(settingsFile)) {
+            const settings = readFileSync(settingsFile, "utf-8");
+            writeFileSync(settingsFile, settings.replace(/Starcord/g, "Onlycord").replace(/starcord/g, "onlycord"));
+        }
+
+        renameSync(tempDir, newDir);
+    } catch (err) {
+        console.error("[Onlycord] Failed to copy data from Starcord:", err);
+    }
+}
+
+if (!process.env.ONLYCORD_USER_DATA_DIR)
+    migrateFromStarcord(join(parentDir, process.env.DISCORD_USER_DATA_DIR ? "StarcordData" : "Starcord"), baseDir);
+
+export const DATA_DIR = process.env.ONLYCORD_USER_DATA_DIR ?? join(baseDir, suffix);
 
 export const SETTINGS_DIR = join(DATA_DIR, "settings");
 export const THEMES_DIR = join(DATA_DIR, "themes");
@@ -68,7 +94,7 @@ if (IS_DEV) {
                 app.relaunch();
                 app.exit(0);
             } catch (err) {
-                console.error("[Starcord] Failed to copy prod data:", err);
+                console.error("[Onlycord] Failed to copy prod data:", err);
             }
         }, 5000);
     }

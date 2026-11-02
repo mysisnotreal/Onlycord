@@ -1,0 +1,71 @@
+.vc-clean-dm [class*="privateChannels_"] [class*="searchBar_"] {
+    box-shadow: none;
+}
+
+.vc-clean-dm [class*="privateChannels_"] [class*="searchBar_"] button {
+    height: 34px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 6%);
+    transition: background 0.15s ease;
+}
+
+.vc-clean-dm [class*="privateChannels_"] [class*="searchBar_"] button:hover {
+    background: rgb(255 255 255 / 10%);
+}
+
+.vc-clean-dm [class*="privateChannels_"] li[class*="channel_"] {
+    height: auto;
+    margin: 2px 8px;
+    padding: 0;
+}
+
+.vc-clean-dm [class*="privateChannels_"] li[class*="channel_"] > [class*="interactive_"] {
+    min-height: 46px;
+    padding: 0 8px;
+    border-radius: 12px;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.vc-clean-dm [class*="privateChannels_"] li[class*="channel_"] > [class*="interactive_"]:hover {
+    background: rgb(255 255 255 / 6%);
+    transform: translateX(2px);
+}
+
+.vc-clean-dm [class*="privateChannels_"] li[class*="channel_"] > [class*="selected_"],
+.vc-clean-dm [class*="privateChannels_"] li[class*="channel_"] > [class*="selected_"]:hover {
+    background: rgb(255 255 255 / 11%);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 8%);
+    transform: none;
+}
+
+.vc-clean-dm [class*="privateChannels_"] [class*="avatarWithText_"] [class*="content_"] {
+    font-weight: 500;
+}
+
+.vc-clean-dm [class*="privateChannels_"] [class*="subText_"] {
+    opacity: 0.62;
+    font-size: 12px;
+}
+
+.vc-clean-dm [class*="privateChannelsHeaderContainer"] {
+    padding: 14px 18px 6px;
+    color: rgb(255 255 255 / 45%);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.vc-clean-dm [class*="privateChannels_"] [class*="sectionDivider"] {
+    display: none;
+}
+
+.vc-clean-dm-no-shop [class*="privateChannels_"] li:has(a[href="/store"]),
+.vc-clean-dm-no-shop [class*="privateChannels_"] li:has(a[href="/shop"]),
+.vc-clean-dm-no-shop [class*="privateChannels_"] li:has(a[href="/quest-home"]) {
+    display: none;
+}
+
+.vc-clean-dm-no-activity [class*="privateChannels_"] [class*="subText_"] {
+    display: none;
+}

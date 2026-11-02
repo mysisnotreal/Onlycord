@@ -31,7 +31,7 @@ permissions:
 
 jobs:
     Build:
-        name: Build Starcord
+        name: Build Onlycord
         runs-on: ubuntu-latest
         if: github.repository == 'Equicord/Equicord'
 
@@ -60,7 +60,7 @@ jobs:
               run: |
                   pnpm generatePluginJson dist/plugins.json
                   pnpm generateEquicordPluginJson dist/equicordplugins.json
-                  pnpm generateStarcordPluginJson dist/starcordplugins.json
+                  pnpm generateOnlycordPluginJson dist/onlycordplugins.json
                   pnpm generateVencordPluginJson dist/vencordplugins.json
                   pnpm generateDevsList dist/devs.json
 
@@ -85,7 +85,7 @@ jobs:
               run: |
                   bun run generatePluginJson dist/plugins.json
                   bun run generateEquicordPluginJson dist/equicordplugins.json
-                  bun run generateStarcordPluginJson dist/starcordplugins.json
+                  bun run generateOnlycordPluginJson dist/onlycordplugins.json
                   bun run generateVencordPluginJson dist/vencordplugins.json
                   bun run generateDevsList dist/devs.json
 
@@ -113,7 +113,7 @@ jobs:
                   find . -size 0 -delete
 
                   mkdir -p userscript
-                  mv Starcord.user.* userscript/
+                  mv Onlycord.user.* userscript/
                   mv desktop.asar desktop/
                   mv equibop.asar equibop/
                   mv extension-*.zip browser/

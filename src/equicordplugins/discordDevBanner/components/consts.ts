@@ -13,7 +13,7 @@ export const settings = definePluginSettings({
     format: {
         component: ({ setValue }) => FormatSetting(setValue),
         type: OptionType.COMPONENT,
-        default: "{starcordIcon} Starcord {starcordVersion} ({starcordHash})",
+        default: "{onlycordIcon} Onlycord {onlycordVersion} ({onlycordHash})",
         restartNeeded: true
     }
 });
@@ -33,11 +33,11 @@ export const settingVariables = [
     "{buildNumber} - Discord build number (e.g. 123456)",
     "{buildHash} - Discord build hash (e.g. 123456789)",
     "",
-    "Starcord Variables:",
-    "{starcordIcon} - Starcord icon",
-    "{starcordVersion} - Version of Starcord (e.g. 1.0.0)",
-    "{starcordHash} - Starcord build hash (e.g. 123456789)",
-    "{starcordPlatform} - Platform Starcord is running on (e.g. Dev Build)",
+    "Onlycord Variables:",
+    "{onlycordIcon} - Onlycord icon",
+    "{onlycordVersion} - Version of Onlycord (e.g. 1.0.0)",
+    "{onlycordHash} - Onlycord build hash (e.g. 123456789)",
+    "{onlycordPlatform} - Platform Onlycord is running on (e.g. Dev Build)",
     "",
     "Equibop Specific Variables:",
     "{equibopHash} - Equibop build hash (e.g. 123456789)",

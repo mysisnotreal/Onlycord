@@ -6,7 +6,7 @@
 
 import type { MessageSendListener } from "@api/MessageEvents";
 import { definePluginSettings } from "@api/Settings";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { copyWithToast, getCurrentChannel, insertTextIntoChatInputBox, sendMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { sleep } from "@utils/misc";
@@ -141,7 +141,7 @@ export default definePlugin({
     description: "Splits oversized messages into Discord-sized chunks before sending.",
     dependencies: ["MessageEventsAPI"],
     tags: ["Chat", "Utility"],
-    authors: [StarcordDevs.Reycko, StarcordDevs.justjxke],
+    authors: [OnlycordDevs.Reycko, OnlycordDevs.justjxke],
     settings,
     onBeforeMessageSend: listener,
 

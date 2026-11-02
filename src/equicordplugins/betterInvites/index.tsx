@@ -7,7 +7,7 @@
 import "./style.css";
 
 import { InfoIcon } from "@components/Icons";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import { openUserProfile } from "@utils/discord";
 import { classes } from "@utils/misc";
 import definePlugin, { StartAt } from "@utils/types";
@@ -35,7 +35,7 @@ export default definePlugin({
     name: "BetterInvites",
     description: "See invites expiration date, view inviter profile and preview servers before joining by clicking the name",
     tags: ["Appearance", "Customisation", "Chat", "Servers"],
-    authors: [StarcordDevs.iamme, Devs.thororen],
+    authors: [OnlycordDevs.iamme, Devs.thororen],
     patches: [
         {
             find: "#{intl::xdCLeM::raw}",

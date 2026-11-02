@@ -7,9 +7,9 @@
 import "./styles.css";
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { get } from "@api/DataStore";
+import { del, get, set } from "@api/DataStore";
 import { definePluginSettings, Settings } from "@api/Settings";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Channel, User } from "@vencord/discord-types";
 import { extractAndLoadChunksLazy } from "@webpack";
@@ -17,10 +17,15 @@ import { ChannelStore, Menu, openModal,SelectedChannelStore } from "@webpack/com
 
 import { SetColorModal } from "./SetColorModal";
 
-export const DATASTORE_KEY = "starcord-customcolors";
+export const DATASTORE_KEY = "onlycord-customcolors";
 export let colors: Record<string, string> = {};
 
 (async () => {
+    const old = await get<Record<string, string>>("starcord-customcolors");
+    if (old) {
+        await set(DATASTORE_KEY, old);
+        await del("starcord-customcolors");
+    }
     colors = await get<Record<string, string>>(DATASTORE_KEY) || {};
 })();
 
@@ -102,7 +107,7 @@ export default definePlugin({
     name: "CustomUserColors",
     description: "Lets you add a custom color to any user, anywhere! Highly recommend to use with typingTweaks and roleColorEverywhere",
     tags: ["Appearance", "Customisation", "Chat"],
-    authors: [StarcordDevs.mochienya],
+    authors: [OnlycordDevs.mochienya],
     contextMenus: {
         "user-context": userContextMenuPatch,
         "gdm-context": channelContextMenuPatch,

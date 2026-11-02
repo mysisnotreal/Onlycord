@@ -25,13 +25,13 @@ import { openContributorModal } from "@components/settings/tabs";
 import { Devs } from "@utils/constants";
 import { copyWithToast } from "@utils/discord";
 import { Logger } from "@utils/Logger";
-import { shouldShowContributorBadge, shouldShowStarcordContributorBadge } from "@utils/misc";
+import { shouldShowContributorBadge, shouldShowOnlycordContributorBadge } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { ContextMenuApi, Menu, showToast, UserStore } from "@webpack/common";
 
 import Plugins, { PluginMeta } from "~plugins";
 
-import { StarcordDonorModal, StarcordTranslatorModal, VencordDonorModal } from "./modals";
+import { OnlycordDonorModal, OnlycordTranslatorModal, VencordDonorModal } from "./modals";
 
 const ContributorBadge: ProfileBadge = {
     id: "vencord_contributor_badge",
@@ -45,15 +45,15 @@ const ContributorBadge: ProfileBadge = {
     onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId))
 };
 
-const StarcordContributorBadge: ProfileBadge = {
-    id: "starcord_contributor_badge",
-    description: "Starcord Contributor",
-    infoLabel: "Starcord",
+const OnlycordContributorBadge: ProfileBadge = {
+    id: "onlycord_contributor_badge",
+    description: "Onlycord Contributor",
+    infoLabel: "Onlycord",
     rarity: BadgeRarity.MYTHIC,
     iconSrc: "https://cdn.discordapp.com/emojis/1563740725726683167.webp?size=128",
     largeIconSrc: "https://cdn.discordapp.com/emojis/1563740725726683167.webp?size=512",
     position: BadgePosition.START,
-    shouldShow: ({ userId }) => shouldShowStarcordContributorBadge(userId),
+    shouldShow: ({ userId }) => shouldShowOnlycordContributorBadge(userId),
     onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId)),
     props: {
         style: {
@@ -66,7 +66,7 @@ const StarcordContributorBadge: ProfileBadge = {
 const UserPluginContributorBadge: ProfileBadge = {
     id: "user_plugin_contributor_badge",
     description: "User Plugin Contributor",
-    infoLabel: "Starcord",
+    infoLabel: "Onlycord",
     rarity: BadgeRarity.MYTHIC,
     iconSrc: "https://cdn.discordapp.com/emojis/1419345679729295420.webp?size=128",
     largeIconSrc: "https://cdn.discordapp.com/emojis/1419345679729295420.webp?size=512",
@@ -89,7 +89,7 @@ const UserPluginContributorBadge: ProfileBadge = {
 };
 
 let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
-let StarcordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
+let OnlycordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
 let DirectoryBadges = {} as Record<string, DirectoryBadge>;
 
 async function loadBadges(url: string, noCache = false) {
@@ -101,10 +101,10 @@ async function loadBadges(url: string, noCache = false) {
 
 async function loadAllBadges(noCache = false) {
     const vencordBadges = await loadBadges("https://badges.vencord.dev/badges.json", noCache);
-    const starcordBadges = await loadBadges("https://badge.equicord.org/badges.json", noCache);
+    const onlycordBadges = await loadBadges("https://badge.equicord.org/badges.json", noCache);
 
     DonorBadges = vencordBadges;
-    StarcordDonorBadges = starcordBadges;
+    OnlycordDonorBadges = onlycordBadges;
 }
 
 let intervalId: any;
@@ -116,7 +116,7 @@ function toDirectoryBadge(b: ProfileBadge, userId: string): DirectoryBadge {
         badge_id: id,
         name: b.name ?? b.description ?? "",
         description: b.detail ?? b.description ?? b.name ?? "",
-        info_label: b.infoLabel ?? "Starcord",
+        info_label: b.infoLabel ?? "Onlycord",
         rarity: b.rarity ?? BadgeRarity.COMMON,
         simple_icon_url: b.iconSrc!,
         complex_icon_static_url: b.largeIconSrc ?? b.iconSrc!,
@@ -217,8 +217,8 @@ export default definePlugin({
         return DonorBadges;
     },
 
-    get StarcordDonorBadges() {
-        return StarcordDonorBadges;
+    get OnlycordDonorBadges() {
+        return OnlycordDonorBadges;
     },
 
     toolboxActions: {
@@ -228,7 +228,7 @@ export default definePlugin({
         }
     },
 
-    userProfileBadges: [ContributorBadge, StarcordContributorBadge, UserPluginContributorBadge],
+    userProfileBadges: [ContributorBadge, OnlycordContributorBadge, UserPluginContributorBadge],
 
     async start() {
         await loadAllBadges();
@@ -313,9 +313,9 @@ export default definePlugin({
         } satisfies ProfileBadge));
     },
 
-    getStarcordDonorBadges(userId: string) {
-        return StarcordDonorBadges[userId]?.map((badge, idx) => ({
-            id: `starcord_donor_badge_${idx}`,
+    getOnlycordDonorBadges(userId: string) {
+        return OnlycordDonorBadges[userId]?.map((badge, idx) => ({
+            id: `onlycord_donor_badge_${idx}`,
             iconSrc: badge.badge,
             description: badge.tooltip,
             name: badge.tooltip,
@@ -332,7 +332,7 @@ export default definePlugin({
                 ContextMenuApi.openContextMenu(event, () => <BadgeContextMenu badge={badge} />);
             },
             onClick() {
-                return badge.tooltip === "Equicord Translator" ? StarcordTranslatorModal() : StarcordDonorModal();
+                return badge.tooltip === "Equicord Translator" ? OnlycordTranslatorModal() : OnlycordDonorModal();
             },
         } satisfies ProfileBadge));
     }

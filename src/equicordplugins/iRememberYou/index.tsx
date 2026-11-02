@@ -9,7 +9,7 @@ import "./styles.css";
 import { addMessagePreSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { EyeIcon } from "@components/Icons";
 import SettingsPlugin from "@plugins/_core/settings";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { removeFromArray } from "@utils/misc";
 import definePlugin from "@utils/types";
 
@@ -20,14 +20,14 @@ export default definePlugin({
     name: "IRememberYou",
     description: "Locally saves everyone you've been communicating with (including servers), in case of lose",
     tags: ["Chat", "Servers"],
-    authors: [StarcordDevs.zoodogood, StarcordDevs.keircn, StarcordDevs.tt],
+    authors: [OnlycordDevs.zoodogood, OnlycordDevs.keircn, OnlycordDevs.tt],
     dependencies: ["MessageEventsAPI"],
 
     patches: [],
 
     async start() {
         SettingsPlugin.customEntries.push({
-            key: "starcord_i_remember_you",
+            key: "onlycord_i_remember_you",
             title: "I Remember You",
             Component: () => <DataUI usersCollection={data.usersCollection} />,
             Icon: EyeIcon
@@ -45,7 +45,7 @@ export default definePlugin({
     },
 
     stop() {
-        removeFromArray(SettingsPlugin.customEntries, e => e.key === "starcord_i_remember_you");
+        removeFromArray(SettingsPlugin.customEntries, e => e.key === "onlycord_i_remember_you");
 
         const dataManager = this.dataManager as Data;
         removeMessagePreSendListener(dataManager._onMessagePreSend_preSend);

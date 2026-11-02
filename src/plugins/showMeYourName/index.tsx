@@ -15,7 +15,7 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Heading } from "@components/Heading";
 import ircColors from "@plugins/ircColors";
 import mentionAvatars from "@plugins/mentionAvatars";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { getCurrentChannel, getCurrentGuild } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
@@ -1369,7 +1369,7 @@ const settings = definePluginSettings({
 export default definePlugin({
     name: "ShowMeYourName",
     description: "Display any permutation of custom nicknames, friend nicknames, server nicknames, display names, and usernames in chat.",
-    authors: [StarcordDevs.Etorix, Devs.Rini, Devs.TheKodeToad, Devs.sadan, Devs.prism, StarcordDevs.penguinwokrs],
+    authors: [OnlycordDevs.Etorix, Devs.Rini, Devs.TheKodeToad, Devs.sadan, Devs.prism, OnlycordDevs.penguinwokrs],
     tags: ["Appearance", "Customisation"],
     searchTerms: ["SMYN", "Nicknames", "Custom Nicknames"],
     isModified: true,

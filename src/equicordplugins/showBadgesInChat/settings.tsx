@@ -4,33 +4,38 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { definePluginSettings } from "@api/Settings";
+import { definePluginSettings, migratePluginSetting } from "@api/Settings";
 import { BaseText } from "@components/BaseText";
 import { OptionType } from "@utils/types";
 import { useEffect, UserStore, useState } from "@webpack/common";
 
+migratePluginSetting("ShowBadgesInChat", "showOnlycordDonor", "showStarcordDonor");
+migratePluginSetting("ShowBadgesInChat", "OnlycordDonorPosition", "StarcordDonorPosition");
+migratePluginSetting("ShowBadgesInChat", "showOnlycordContributor", "showStarcordContributor");
+migratePluginSetting("ShowBadgesInChat", "OnlycordContributorPosition", "StarcordContributorPosition");
+
 const settings = definePluginSettings({
-    showStarcordDonor: {
+    showOnlycordDonor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Starcord Donor badges in chat.",
+        description: "Enable to show Onlycord Donor badges in chat.",
         hidden: true,
         default: true
     },
-    StarcordDonorPosition: {
+    OnlycordDonorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Starcord Donor badges.",
+        description: "The position of the Onlycord Donor badges.",
         hidden: true,
         default: 0
     },
-    showStarcordContributor: {
+    showOnlycordContributor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Starcord Contributor badges in chat.",
+        description: "Enable to show Onlycord Contributor badges in chat.",
         hidden: true,
         default: true
     },
-    StarcordContributorPosition: {
+    OnlycordContributorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Starcord Contributor badge.",
+        description: "The position of the Onlycord Contributor badge.",
         hidden: true,
         default: 1
     },
@@ -93,8 +98,8 @@ export default settings;
 
 const BadgeSettings = () => {
     const [images, setImages] = useState([
-        { src: "https://badge.equicord.org/donor.webp", shown: settings.store.showStarcordDonor, title: "Starcord donor badges", key: "StarcordDonor", position: settings.store.StarcordDonorPosition },
-        { src: "https://equicord.org/assets/favicon.png", shown: settings.store.showStarcordContributor, title: "Starcord contributor badge", key: "StarcordContributer", position: settings.store.StarcordContributorPosition },
+        { src: "https://badge.equicord.org/donor.webp", shown: settings.store.showOnlycordDonor, title: "Onlycord donor badges", key: "OnlycordDonor", position: settings.store.OnlycordDonorPosition },
+        { src: "https://equicord.org/assets/favicon.png", shown: settings.store.showOnlycordContributor, title: "Onlycord contributor badge", key: "OnlycordContributer", position: settings.store.OnlycordContributorPosition },
         { src: "https://cdn.discordapp.com/emojis/1026533070955872337.png", shown: settings.store.showVencordDonor, title: "Vencord donor badges", key: "VencordDonor", position: settings.store.VencordDonorPosition },
         { src: "https://cdn.discordapp.com/emojis/1092089799109775453.png", shown: settings.store.showVencordContributor, title: "Vencord contributor badge", key: "VencordContributer", position: settings.store.VencordContributorPosition },
         { src: "https://cdn.discordapp.com/badge-icons/bf01d1073931f921909045f3a39fd264.png", shown: settings.store.showDiscordProfile, title: "Discord profile badges (HypeSquad, Discord Staff, Early Supporter, etc.)", key: "DiscordProfile", position: settings.store.DiscordProfilePosition },
@@ -104,13 +109,13 @@ const BadgeSettings = () => {
     useEffect(() => {
         images.forEach(image => {
             switch (image.key) {
-                case "StarcordDonor":
-                    settings.store.StarcordDonorPosition = image.position;
-                    settings.store.showStarcordDonor = image.shown;
+                case "OnlycordDonor":
+                    settings.store.OnlycordDonorPosition = image.position;
+                    settings.store.showOnlycordDonor = image.shown;
                     break;
-                case "StarcordContributer":
-                    settings.store.StarcordContributorPosition = image.position;
-                    settings.store.showStarcordContributor = image.shown;
+                case "OnlycordContributer":
+                    settings.store.OnlycordContributorPosition = image.position;
+                    settings.store.showOnlycordContributor = image.shown;
                     break;
                 case "VencordDonor":
                     settings.store.VencordDonorPosition = image.position;

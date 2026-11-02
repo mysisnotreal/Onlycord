@@ -8,7 +8,7 @@ import "./styles.css";
 
 import * as DataStore from "@api/DataStore";
 import { definePluginSettings } from "@api/Settings";
-import { IS_MAC,StarcordDevs } from "@utils/constants";
+import { IS_MAC,OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { makeRange, OptionType } from "@utils/types";
 import { Button, ChannelRouter, ChannelStore, closeModal, IconUtils, openModal, React, RelationshipStore, SelectedChannelStore, showToast,UserStore } from "@webpack/common";
@@ -324,7 +324,7 @@ export default definePlugin({
     name: "RecentDMSwitcher",
     description: "Ctrl+Tab between most recently used DMs (Ctrl+Shift+Tab reverse)",
     tags: ["Chat", "Utility"],
-    authors: [StarcordDevs.mmeta],
+    authors: [OnlycordDevs.mmeta],
     settings,
 
     flux: {

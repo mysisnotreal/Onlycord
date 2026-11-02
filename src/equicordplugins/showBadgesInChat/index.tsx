@@ -7,8 +7,8 @@
 import "./styles.css";
 
 import badges from "@plugins/_api/badges";
-import { Devs, StarcordDevs } from "@utils/constants";
-import { isPluginDev,isStarcordPluginDev } from "@utils/misc";
+import { Devs, OnlycordDevs } from "@utils/constants";
+import { isOnlycordPluginDev,isPluginDev } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { findComponentByCodeLazy, findCssClassesLazy } from "@webpack";
 
@@ -37,10 +37,10 @@ const discordBadges: readonly [number, string, string][] = Object.freeze([
 function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.Element | null {
 
     switch (badge) {
-        case "StarcordDonor":
+        case "OnlycordDonor":
             return (
-                <span style={{ order: settings.store.StarcordDonorPosition }}>
-                    {badges.getStarcordDonorBadges(author.id)?.map(badge => (
+                <span style={{ order: settings.store.OnlycordDonorPosition }}>
+                    {badges.getOnlycordDonorBadges(author.id)?.map(badge => (
                         <RoleIconComponent
                             key={author.id}
                             className={roleIcon}
@@ -51,12 +51,12 @@ function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.El
                     ))}
                 </span>
             );
-        case "StarcordContributer":
-            return isStarcordPluginDev(author.id) ? (
-                <span style={{ order: settings.store.StarcordContributorPosition }}>
+        case "OnlycordContributer":
+            return isOnlycordPluginDev(author.id) ? (
+                <span style={{ order: settings.store.OnlycordContributorPosition }}>
                     <RoleIconComponent
                         className={roleIcon}
-                        name="Starcord Contributor"
+                        name="Onlycord Contributor"
                         size={20}
                         src={"https://equicord.org/assets/favicon.png"}
                     />
@@ -128,8 +128,8 @@ function ChatBadges({ author }: { author: User; }) {
 
     return (
         <span className="vc-sbic-badge-row" style={{ margin: "2px" }}>
-            {settings.store.showStarcordDonor && <CheckBadge badge={"StarcordDonor"} author={author} />}
-            {settings.store.showStarcordContributor && <CheckBadge badge={"StarcordContributer"} author={author} />}
+            {settings.store.showOnlycordDonor && <CheckBadge badge={"OnlycordDonor"} author={author} />}
+            {settings.store.showOnlycordContributor && <CheckBadge badge={"OnlycordContributer"} author={author} />}
             {settings.store.showVencordDonor && <CheckBadge badge={"VencordDonor"} author={author} />}
             {settings.store.showVencordContributor && <CheckBadge badge={"VencordContributer"} author={author} />}
             {settings.store.showDiscordProfile && <CheckBadge badge={"DiscordProfile"} author={author} />}
@@ -140,7 +140,7 @@ function ChatBadges({ author }: { author: User; }) {
 
 export default definePlugin({
     name: "ShowBadgesInChat",
-    authors: [Devs.Inbestigator, StarcordDevs.KrystalSkull],
+    authors: [Devs.Inbestigator, OnlycordDevs.KrystalSkull],
     description: "Shows the message author's badges beside their name in chat.",
     dependencies: ["MessageDecorationsAPI"],
     tags: ["Appearance", "Chat"],

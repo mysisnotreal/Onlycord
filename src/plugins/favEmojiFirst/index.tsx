@@ -13,7 +13,7 @@ import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
 import { PencilIcon } from "@components/Icons";
 import { Paragraph } from "@components/Paragraph";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
@@ -1079,7 +1079,7 @@ const messageSendListener = (_channelId: string, messageObj: { content: string; 
 
 export default definePlugin({
     name: "FavoriteEmojiFirst",
-    authors: [Devs.Aria, Devs.Ven, StarcordDevs.justjxke],
+    authors: [Devs.Aria, Devs.Ven, OnlycordDevs.justjxke],
     tags: ["Emotes", "Customisation"],
     description: "Puts your favorite emoji first in the emoji autocomplete and also has emoji alias.",
     dependencies: ["MessagePopoverAPI"],

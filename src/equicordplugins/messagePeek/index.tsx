@@ -12,7 +12,7 @@ import { definePluginSettings } from "@api/Settings";
 import { AttachmentIcon, GifIcon, ImageIcon, Microphone, StickerIcon, VideoIcon } from "@components/Icons";
 import betterActivities from "@equicordplugins/betterActivities";
 import showMeYourName from "@plugins/showMeYourName";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { classes, pluralize } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
@@ -240,7 +240,7 @@ export default definePlugin({
     description: "Shows the last message preview and timestamp in the Direct Messages list.",
     dependencies: ["MemberListDecoratorsAPI"],
     tags: ["Appearance", "Chat"],
-    authors: [Devs.prism, StarcordDevs.justjxke],
+    authors: [Devs.prism, OnlycordDevs.justjxke],
     settings,
     patches: [
         {

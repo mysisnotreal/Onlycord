@@ -5,7 +5,7 @@
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { FluxDispatcher } from "@webpack/common";
 
@@ -56,7 +56,7 @@ function interceptor(event: any) {
 export default definePlugin({
     name: "SilenceUsers",
     description: "Silences @mention pings and server badge counts from specific users. Regular messages and DMs are untouched.",
-    authors: [StarcordDevs.dka],
+    authors: [OnlycordDevs.dka],
     tags: ["Notifications"],
     settings,
     start() {

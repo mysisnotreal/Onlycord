@@ -1,10 +1,10 @@
 {
-    "name": "starcord",
+    "name": "onlycord",
     "private": "true",
     "version": "1.15.13.0",
     "description": "The other cutest Discord client mod",
     "license": "GPL-3.0-or-later",
-    "author": "Starcord",
+    "author": "Onlycord",
     "scripts": {
         "build": "node --require=./scripts/suppressExperimentalWarnings.js scripts/build/build.mjs",
         "buildStandalone": "pnpm build --standalone",
@@ -18,7 +18,7 @@
         "generateDevsList": "tsx scripts/generateDevsList.ts",
         "generatePluginJson": "tsx scripts/generatePluginList.ts",
         "generateEquicordPluginJson": "tsx scripts/generatePluginList.ts --equicord",
-        "generateStarcordPluginJson": "tsx scripts/generatePluginList.ts --starcord",
+        "generateOnlycordPluginJson": "tsx scripts/generatePluginList.ts --onlycord",
         "generateVencordPluginJson": "tsx scripts/generatePluginList.ts --vencord",
         "generateTypes": "tspc --emitDeclarationOnly --declaration --outDir packages/vencord-types --allowJs false",
         "inject": "node scripts/runInstaller.mjs -- --install",

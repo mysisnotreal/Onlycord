@@ -9,7 +9,7 @@ import "./styles.css";
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { OpenExternalIcon } from "@components/Icons";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin from "@utils/types";
 import { CloudUpload } from "@vencord/discord-types";
@@ -411,7 +411,7 @@ export default definePlugin({
     name: "FileUpload",
     description: "Upload files to hosting services like Zipline, Nest, S3, and WebDAV",
     tags: ["Media"],
-    authors: [StarcordDevs.creations, StarcordDevs.keircn, Devs.ScattrdBlade],
+    authors: [OnlycordDevs.creations, OnlycordDevs.keircn, Devs.ScattrdBlade],
     settings,
     patches: [
         {

@@ -101,7 +101,8 @@ const enum SearchStatus {
     FAVORITES,
     ENABLED,
     DISABLED,
-    STARCORD,
+    ONLYCORD,
+    NIGHTCORD,
     EQUICORD,
     VENCORD,
     NEW,
@@ -115,8 +116,8 @@ export const ExcludedReasons: Record<PluginTarget, string> = {
     vesktop: "Vesktop/Equibop apps",
     equibop: "Vesktop/Equibop apps",
     web: "Vesktop/Equibop apps & Discord web",
-    dev: "Developer version of Starcord",
-    browser: "Web Browser version of Starcord"
+    dev: "Developer version of Onlycord",
+    browser: "Web Browser version of Onlycord"
 };
 
 function ExcludedPluginsList({ search }: { search: string; }) {
@@ -216,8 +217,11 @@ export default function PluginSettings() {
             case SearchStatus.ENABLED:
                 if (!isPluginEnabled(plugin.name)) return false;
                 break;
-            case SearchStatus.STARCORD:
-                if (!PluginMeta[plugin.name].folderName.startsWith("src/starcordplugins/")) return false;
+            case SearchStatus.ONLYCORD:
+                if (!PluginMeta[plugin.name].folderName.startsWith("src/onlycordplugins/")) return false;
+                break;
+            case SearchStatus.NIGHTCORD:
+                if (!PluginMeta[plugin.name].folderName.startsWith("src/nightcordplugins/")) return false;
                 break;
             case SearchStatus.EQUICORD:
                 if (!PluginMeta[plugin.name].folderName.startsWith("src/equicordplugins/")) return false;
@@ -282,7 +286,7 @@ export default function PluginSettings() {
 
             if (isRequired) {
                 const tooltipText = p.required || !depMap[p.name]
-                    ? "This plugin is required for Starcord to function."
+                    ? "This plugin is required for Onlycord to function."
                     : <PluginDependencyList deps={depMap[p.name]?.filter(d => settings.plugins[d].enabled)} />;
 
                 requiredPlugins.push(
@@ -424,7 +428,8 @@ export default function PluginSettings() {
                             { label: "Show Favorites", value: SearchStatus.FAVORITES },
                             { label: "Show Enabled", value: SearchStatus.ENABLED },
                             { label: "Show Disabled", value: SearchStatus.DISABLED },
-                            { label: "Show Starcord", value: SearchStatus.STARCORD },
+                            { label: "Show Onlycord", value: SearchStatus.ONLYCORD },
+                            { label: "Show Nightcord", value: SearchStatus.NIGHTCORD },
                             { label: "Show Equicord", value: SearchStatus.EQUICORD },
                             { label: "Show Vencord", value: SearchStatus.VENCORD },
                             { label: "Show New", value: SearchStatus.NEW },

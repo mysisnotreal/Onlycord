@@ -95,7 +95,7 @@ interface SettingsLayoutBuilder {
 const settings = definePluginSettings({
     settingsLocation: {
         type: OptionType.SELECT,
-        description: "Where to put the Starcord settings section",
+        description: "Where to put the Onlycord settings section",
         options: [
             { label: "At the very top", value: "top" },
             { label: "Above Billing section", value: "aboveNitro", default: true },
@@ -107,7 +107,7 @@ const settings = definePluginSettings({
     },
     includeVencordInfoWhenCopying: {
         type: OptionType.BOOLEAN,
-        description: "Also copy Starcord info (Starcord, Electron, Chromium) when clicking the version info in the bottom left area of the Settings page",
+        description: "Also copy Onlycord info (Onlycord, Electron, Chromium) when clicking the version info in the bottom left area of the Settings page",
         default: true
     }
 });
@@ -182,38 +182,38 @@ export default definePlugin({
         const layout = originalLayoutBuilder.buildLayout();
         if (originalLayoutBuilder.key !== "$Root") return layout;
         if (!Array.isArray(layout)) return layout;
-        if (layout.some(s => s?.key === "starcord_section")) return layout;
+        if (layout.some(s => s?.key === "onlycord_section")) return layout;
 
         const { buildEntry } = this;
 
-        const starcordEntries: SettingsLayoutNode[] = [
+        const onlycordEntries: SettingsLayoutNode[] = [
             buildEntry({
-                key: "starcord_main",
-                title: "Starcord",
-                panelTitle: "Starcord Settings",
+                key: "onlycord_main",
+                title: "Onlycord",
+                panelTitle: "Onlycord Settings",
                 Component: VencordTab,
                 Icon: MainSettingsIcon
             }),
             buildEntry({
-                key: "starcord_plugins",
+                key: "onlycord_plugins",
                 title: "Plugins",
                 Component: PluginsTab,
                 Icon: PluginsIcon
             }),
             buildEntry({
-                key: "starcord_themes",
+                key: "onlycord_themes",
                 title: "Themes",
                 Component: ThemesTab,
                 Icon: PaintbrushIcon
             }),
             buildEntry({
-                key: "starcord_backup_restore",
+                key: "onlycord_backup_restore",
                 title: "Backup & Restore",
                 Component: BackupAndRestoreTab,
                 Icon: BackupRestoreIcon
             }),
             !IS_STANDALONE && PatchHelperTab && buildEntry({
-                key: "starcord_patch_helper",
+                key: "onlycord_patch_helper",
                 title: "Patch Helper",
                 Component: PatchHelperTab,
                 Icon: PatchHelperIcon
@@ -221,11 +221,11 @@ export default definePlugin({
             ...this.customEntries.map(buildEntry)
         ].filter(isTruthy);
 
-        const starcordSection: SettingsLayoutNode = {
-            key: "starcord_section",
+        const onlycordSection: SettingsLayoutNode = {
+            key: "onlycord_section",
             type: LayoutTypes.SECTION,
-            useTitle: () => "Starcord Settings",
-            buildLayout: () => starcordEntries
+            useTitle: () => "Onlycord Settings",
+            buildLayout: () => onlycordEntries
         };
 
         const { settingsLocation } = settings.store;
@@ -248,7 +248,7 @@ export default definePlugin({
             idx += 1;
         }
 
-        layout.splice(idx, 0, starcordSection);
+        layout.splice(idx, 0, onlycordSection);
 
         return layout;
     },
@@ -290,7 +290,7 @@ export default definePlugin({
     getInfoRows() {
         const { electronVersion, chromiumVersion, getVersionInfo } = this;
 
-        const rows = [`Starcord ${gitHashShort}${getVersionInfo()}`];
+        const rows = [`Onlycord ${gitHashShort}${getVersionInfo()}`];
 
         if (electronVersion) rows.push(`Electron ${electronVersion}`);
         if (chromiumVersion) rows.push(`Chromium ${chromiumVersion}`);

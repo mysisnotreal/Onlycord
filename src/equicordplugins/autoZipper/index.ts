@@ -5,7 +5,7 @@
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
 import { ChannelStore, DraftType, SelectedChannelStore, UploadHandler } from "@webpack/common";
@@ -210,7 +210,7 @@ export default definePlugin({
     name: "AutoZipper",
     description: "Automatically zips specified file types and folders before uploading to Discord",
     tags: ["Chat", "Organisation"],
-    authors: [StarcordDevs.SSnowly],
+    authors: [OnlycordDevs.SSnowly],
     settings,
 
     start() {

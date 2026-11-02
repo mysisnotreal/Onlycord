@@ -97,8 +97,8 @@ export default definePlugin({
             registerAction({
                 id: "openDevSettings",
                 label: "Open Dev tab",
-                callback: () => SettingsRouter.openUserSettings("starcord_patch_helper_panel"),
-                registrar: "Starcord"
+                callback: () => SettingsRouter.openUserSettings("onlycord_patch_helper_panel"),
+                registrar: "Onlycord"
             });
         }
     },

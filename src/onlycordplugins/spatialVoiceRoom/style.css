@@ -1,0 +1,323 @@
+[class*="callContainer"]:has(.vc-spatial-room-root) [class*="videoGrid"] {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+.vc-spatial-room-root {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: #000;
+    container-type: size;
+    perspective: 1100px;
+    perspective-origin: 50% 32%;
+    pointer-events: none;
+}
+
+.vc-spatial-room-environment {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.vc-spatial-room-filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.vc-spatial-room-world {
+    --size: min(14cqw, 24cqh);
+
+    position: absolute;
+    top: 64%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+}
+
+.vc-spatial-room-crowded {
+    --size: min(10.5cqw, 18cqh);
+}
+
+.vc-spatial-room-seat {
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--size) / -2);
+    width: var(--size);
+    height: var(--size);
+    transform-style: preserve-3d;
+    transform: translate3d(calc(var(--x) * var(--size) * 1.5), 0, calc(var(--z) * var(--size) * 1.5)) rotateY(var(--tilt));
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.vc-spatial-room-body {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    animation: vc-spatial-room-settle 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-environment="water"] .vc-spatial-room-body {
+    animation: vc-spatial-room-float 5.5s ease-in-out calc(var(--order) * -1.3s) infinite;
+}
+
+.vc-spatial-room-world[data-environment] {
+    --rim: rgb(190 210 255 / 45%);
+}
+
+[data-environment="meadow"] {
+    --rim: rgb(255 240 190 / 60%) !important;
+}
+
+[data-environment="sunset"] {
+    --rim: rgb(255 175 105 / 65%) !important;
+}
+
+[data-environment="neon"] {
+    --rim: rgb(255 70 200 / 70%) !important;
+}
+
+[data-environment="aurora"] {
+    --rim: rgb(100 255 190 / 55%) !important;
+}
+
+.vc-spatial-room-avatar {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    box-shadow:
+        0 0 0 1.5px rgb(255 255 255 / 22%),
+        0 0 22px -4px var(--rim),
+        0 18px 38px rgb(0 0 0 / 58%);
+    pointer-events: auto;
+    transition: box-shadow 0.14s ease, filter 0.2s ease;
+}
+
+.vc-spatial-room-avatar::after {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(ellipse 70% 42% at 42% 10%, rgb(255 255 255 / 26%), transparent 72%);
+    box-shadow: inset 0 -12px 22px -10px var(--rim), inset 0 0 0 1px rgb(255 255 255 / 10%);
+    content: "";
+}
+
+.vc-spatial-room-speaking .vc-spatial-room-avatar {
+    box-shadow:
+        0 0 0 3px #43d17d,
+        0 0 44px 10px rgb(67 209 125 / 58%);
+    animation: vc-spatial-room-pulse 1.3s ease-out infinite;
+}
+
+.vc-spatial-room-silent .vc-spatial-room-avatar {
+    filter: saturate(0.55) brightness(0.72);
+}
+
+.vc-spatial-room-reflection {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-top: 2px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.42;
+    filter: blur(0.8px);
+    transform: scaleY(-1);
+    mask-image: linear-gradient(to top, #000, transparent 68%);
+}
+
+[data-environment="water"] .vc-spatial-room-reflection {
+    opacity: 0.5;
+    filter: url("#vc-spatial-room-ripple") blur(0.5px);
+}
+
+[data-environment="meadow"] .vc-spatial-room-reflection,
+[data-environment="sunset"] .vc-spatial-room-reflection,
+[data-environment="aurora"] .vc-spatial-room-reflection {
+    display: none;
+}
+
+.vc-spatial-room-foreground {
+    z-index: 1;
+    pointer-events: none;
+}
+
+.vc-spatial-room-above {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    transform: translateX(-50%);
+}
+
+.vc-spatial-room-name {
+    max-width: calc(var(--size) * 1.9);
+    overflow: hidden;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 50%);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 12%);
+    color: #fff;
+    font: 600 13px var(--font-primary);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+}
+
+.vc-spatial-room-stream {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--size) * 1.5);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 10px;
+    background: rgb(0 0 0 / 82%);
+    box-shadow:
+        0 0 0 1px rgb(255 255 255 / 24%),
+        0 10px 30px rgb(0 0 0 / 60%);
+    cursor: pointer;
+    pointer-events: auto;
+    transition: box-shadow 0.15s ease;
+}
+
+.vc-spatial-room-stream:hover {
+    box-shadow:
+        0 0 0 2px #fff,
+        0 10px 36px rgb(0 0 0 / 70%);
+}
+
+.vc-spatial-room-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.vc-spatial-room-waiting {
+    background-position: center;
+    background-size: cover;
+}
+
+.vc-spatial-room-watch {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 62%);
+    color: #fff;
+    font: 600 12px var(--font-primary);
+    backdrop-filter: blur(6px);
+}
+
+.vc-spatial-room-stop {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    padding: 7px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 14%);
+    color: #fff;
+    font: 600 13px var(--font-primary);
+    cursor: pointer;
+}
+
+.vc-spatial-room-stop:hover {
+    background: #da373c;
+}
+
+.vc-spatial-room-live {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #e5383f;
+    color: #fff;
+    font: 700 10px var(--font-primary);
+    letter-spacing: 0.04em;
+}
+
+.vc-spatial-room-badges {
+    position: absolute;
+    right: -3%;
+    bottom: -3%;
+    display: flex;
+    gap: 4px;
+}
+
+.vc-spatial-room-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max(24px, calc(var(--size) * 0.25));
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #15161a;
+    box-shadow: 0 0 0 2px rgb(255 255 255 / 22%);
+    color: #fff;
+}
+
+.vc-spatial-room-badge svg {
+    width: 64%;
+    height: 64%;
+}
+
+.vc-spatial-room-server {
+    background: #da373c;
+}
+
+.vc-spatial-room-focus {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 28px 84px;
+    background: rgb(0 0 0 / 72%);
+    cursor: zoom-out;
+    pointer-events: auto;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes vc-spatial-room-float {
+    50% {
+        transform: translateY(-6px) rotateZ(0.6deg);
+    }
+}
+
+@keyframes vc-spatial-room-pulse {
+    70%,
+    100% {
+        box-shadow:
+            0 0 0 3px #43d17d,
+            0 0 0 18px rgb(67 209 125 / 0%),
+            0 0 44px 10px rgb(67 209 125 / 38%);
+    }
+}
+
+@keyframes vc-spatial-room-settle {
+    from {
+        opacity: 0;
+        transform: translateY(-24px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vc-spatial-room-body {
+        animation: none !important;
+    }
+}

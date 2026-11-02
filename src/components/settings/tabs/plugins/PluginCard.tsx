@@ -13,7 +13,8 @@ import { classNameFactory } from "@utils/css";
 import { Logger } from "@utils/Logger";
 import { Plugin } from "@utils/types";
 import { React, showToast } from "@webpack/common";
-import starcordIcon from "file://../../../../../installer/image.png?base64";
+import onlycordIcon from "file://../../../../../installer/image.png?base64";
+import nightcordIcon from "file://nightcord.png?base64";
 
 import { PluginMeta } from "~plugins";
 
@@ -34,8 +35,9 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
     const settings = Settings.plugins[plugin.name];
     const pluginMeta = PluginMeta[plugin.name];
     const isEquicordPlugin = pluginMeta.folderName.startsWith("src/equicordplugins/") ?? false;
-    const isStarcordPlugin = pluginMeta.folderName.startsWith("src/starcordplugins/") ?? false;
+    const isOnlycordPlugin = pluginMeta.folderName.startsWith("src/onlycordplugins/") ?? false;
     const isVencordPlugin = pluginMeta.folderName.startsWith("src/plugins/") ?? false;
+    const isNightcordPlugin = pluginMeta.folderName.startsWith("src/nightcordplugins/");
     const isUserPlugin = pluginMeta?.userPlugin ?? false;
     const isModifiedPlugin = plugin.isModified ?? false;
 
@@ -97,10 +99,16 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
             title: "Modified Vencord Plugin"
         },
         {
-            condition: isStarcordPlugin,
-            src: `data:image/png;base64,${starcordIcon}`,
-            alt: "Starcord",
-            title: "Starcord Plugin"
+            condition: isNightcordPlugin,
+            src: `data:image/png;base64,${nightcordIcon}`,
+            alt: "Nightcord",
+            title: "Nightcord Plugin"
+        },
+        {
+            condition: isOnlycordPlugin,
+            src: `data:image/png;base64,${onlycordIcon}`,
+            alt: "Onlycord",
+            title: "Onlycord Plugin"
         },
         {
             condition: isEquicordPlugin,

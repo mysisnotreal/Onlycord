@@ -174,7 +174,8 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
 
     const pluginMeta = PluginMeta[plugin.name];
     const isEquicordPlugin = pluginMeta.folderName.startsWith("src/equicordplugins/") ?? false;
-    const isStarcordPlugin = pluginMeta.folderName.startsWith("src/starcordplugins/") ?? false;
+    const isOnlycordPlugin = pluginMeta.folderName.startsWith("src/onlycordplugins/") ?? false;
+    const isNightcordPlugin = pluginMeta.folderName.startsWith("src/nightcordplugins/");
 
     return (
         <Modal
@@ -218,7 +219,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                                 renderUser={(user: User) => (
                                     <Clickable
                                         className={AvatarStyles.clickableAvatar}
-                                        onClick={() => isStarcordPlugin ? openContributorModal(user) : openContributorModal(user)}
+                                        onClick={() => isOnlycordPlugin ? openContributorModal(user) : openContributorModal(user)}
                                     >
                                         <img
                                             className={AvatarStyles.avatar}
@@ -262,7 +263,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                                     isFavorite={pluginSettings.isFavorite ?? false}
                                     onClick={() => pluginSettings.isFavorite = !pluginSettings.isFavorite}
                                 />
-                                {!isStarcordPlugin && (
+                                {!isOnlycordPlugin && !isNightcordPlugin && (
                                     <WebsiteButton
                                         text="Website"
                                         href={isEquicordPlugin ? `https://equicord.org/plugins/${plugin.name}` : `https://vencord.dev/plugins/${plugin.name}`}

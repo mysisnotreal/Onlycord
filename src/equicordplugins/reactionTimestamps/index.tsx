@@ -7,7 +7,7 @@
 import "./style.css";
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import type { ReactionEmoji } from "@vencord/discord-types";
 
@@ -97,7 +97,7 @@ function ReactionName(props: ReactionUserRowProps) {
 export default definePlugin({
     name: "ReactionTimestamps",
     description: "Shows each reaction time in the reaction popout.",
-    authors: [StarcordDevs.Kurt],
+    authors: [OnlycordDevs.Kurt],
     tags: ["Reactions", "Chat"],
 
     patches: [

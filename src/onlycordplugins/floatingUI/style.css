@@ -1,0 +1,56 @@
+:root {
+    --vc-float-surface: color-mix(in srgb, var(--background-base-lower, #111214) 94%, #fff);
+    --vc-float-edge: rgb(255 255 255 / 7%);
+}
+
+.vc-float-servers nav[class*="guilds_"] {
+    box-sizing: border-box;
+    margin-top: var(--vc-float-gap);
+    border-left: var(--vc-float-gap) solid transparent;
+    border-radius: var(--vc-float-radius);
+    background: var(--vc-float-surface);
+    background-clip: padding-box;
+    box-shadow: inset 0 0 0 1px var(--vc-float-edge);
+}
+
+.vc-float-sidebar [class*="sidebar_"] > [class*="sidebarList_"] {
+    box-sizing: border-box;
+    height: calc(100% - var(--vc-float-gap) * 2);
+    margin-top: var(--vc-float-gap);
+    overflow: hidden;
+    border: 0 !important;
+    border-left: var(--vc-float-gap) solid transparent !important;
+    border-radius: var(--vc-float-radius);
+    background: var(--vc-float-surface);
+    background-clip: padding-box;
+    box-shadow: inset 0 0 0 1px var(--vc-float-edge);
+}
+
+.vc-float-sidebar [class*="sidebarList_"] [class*="privateChannels_"],
+.vc-float-sidebar [class*="sidebarList_"] [class*="container_"],
+.vc-float-sidebar [class*="sidebarList_"] nav {
+    background: transparent;
+}
+
+.vc-float-sidebar section[class*="panels_"] {
+    bottom: calc(var(--vc-float-gap) * 2);
+    border-radius: var(--vc-float-radius);
+    background: var(--vc-float-surface);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 55%), inset 0 0 0 1px var(--vc-float-edge);
+}
+
+.vc-float-content [class*="base_"] > [class*="content_"] > [class*="page_"] {
+    width: auto;
+    min-width: 0;
+    height: calc(100% - var(--vc-float-gap) * 2);
+    margin: var(--vc-float-gap);
+    overflow: hidden;
+    border: 0 !important;
+    border-radius: var(--vc-float-radius);
+    background: var(--vc-float-surface);
+    box-shadow: inset 0 0 0 1px var(--vc-float-edge);
+}
+
+.vc-float-content [class*="base_"] > [class*="content_"] > [class*="page_"] > * {
+    border-radius: inherit;
+}

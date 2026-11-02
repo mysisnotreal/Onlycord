@@ -1,5 +1,5 @@
 name: Bug/Crash Report
-description: Create a bug or crash report for Starcord.
+description: Create a bug or crash report for Onlycord.
 labels: [bug]
 title: "[Bug] <title>"
 
@@ -28,7 +28,7 @@ body:
       attributes:
           label: What is the expected behaviour?
           description: Simply detail what the expected behaviour is.
-          placeholder: I expect Starcord/Discord to open the ... page instead of ..., it prevents me from doing ...
+          placeholder: I expect Onlycord/Discord to open the ... page instead of ..., it prevents me from doing ...
       validations:
           required: true
 
@@ -65,7 +65,7 @@ body:
           options:
               - label: I've searched existing issues and this hasn't been reported before
               - label: I am using Discord Stable or tried on Stable and this bug happens there as well
-              - label: I installed Starcord via an official method (built from source), not via something like AUR or Nix packages
+              - label: I installed Onlycord via an official method (built from source), not via something like AUR or Nix packages
               - label: This is not a support request
               - label: I understand that if any of the above conditions are not met, this issue will be deleted and I will be banned from creating future issues without further warning
                 required: true

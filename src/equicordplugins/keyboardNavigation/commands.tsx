@@ -25,14 +25,14 @@ export interface ButtonAction {
 }
 
 export const actions: ButtonAction[] = [
-    { id: "openStarcordSettings", label: "Open Starcord tab", callback: async () => await SettingsRouter.openUserSettings("starcord_main_panel"), registrar: "Starcord" },
-    { id: "openPluginSettings", label: "Open Plugin tab", callback: () => SettingsRouter.openUserSettings("starcord_plugins_panel"), registrar: "Starcord" },
-    { id: "openThemesSettings", label: "Open Themes tab", callback: () => SettingsRouter.openUserSettings("starcord_themes_panel"), registrar: "Starcord" },
-    { id: "openBackupSettings", label: "Open Backup & Restore tab", callback: () => SettingsRouter.openUserSettings("starcord_backup_restore_panel"), registrar: "Starcord" },
-    { id: "restartClient", label: "Restart Client", callback: () => relaunch(), registrar: "Starcord" },
-    { id: "openQuickCSSFile", label: "Open Quick CSS File", callback: () => VencordNative.quickCss.openEditor(), registrar: "Starcord" },
-    { id: "openSettingsFolder", label: "Open Settings Folder", callback: async () => showItemInFolder(await VencordNative.settings.getSettingsDir()), registrar: "Starcord" },
-    { id: "openInGithub", label: "Open in Github", callback: async () => VencordNative.native.openExternal(await getRepo()), registrar: "Starcord" },
+    { id: "openOnlycordSettings", label: "Open Onlycord tab", callback: async () => await SettingsRouter.openUserSettings("onlycord_main_panel"), registrar: "Onlycord" },
+    { id: "openPluginSettings", label: "Open Plugin tab", callback: () => SettingsRouter.openUserSettings("onlycord_plugins_panel"), registrar: "Onlycord" },
+    { id: "openThemesSettings", label: "Open Themes tab", callback: () => SettingsRouter.openUserSettings("onlycord_themes_panel"), registrar: "Onlycord" },
+    { id: "openBackupSettings", label: "Open Backup & Restore tab", callback: () => SettingsRouter.openUserSettings("onlycord_backup_restore_panel"), registrar: "Onlycord" },
+    { id: "restartClient", label: "Restart Client", callback: () => relaunch(), registrar: "Onlycord" },
+    { id: "openQuickCSSFile", label: "Open Quick CSS File", callback: () => VencordNative.quickCss.openEditor(), registrar: "Onlycord" },
+    { id: "openSettingsFolder", label: "Open Settings Folder", callback: async () => showItemInFolder(await VencordNative.settings.getSettingsDir()), registrar: "Onlycord" },
+    { id: "openInGithub", label: "Open in Github", callback: async () => VencordNative.native.openExternal(await getRepo()), registrar: "Onlycord" },
 
     {
         id: "openInBrowser", label: "Open in Browser", callback: async () => {
@@ -49,7 +49,7 @@ export const actions: ButtonAction[] = [
                     position: "bottom"
                 });
             }
-        }, registrar: "Starcord"
+        }, registrar: "Onlycord"
     },
 
     {
@@ -74,7 +74,7 @@ export const actions: ButtonAction[] = [
             if (choice && enabled) {
                 return togglePlugin(choice, enabled.id === "enable");
             }
-        }, registrar: "Starcord"
+        }, registrar: "Onlycord"
     },
 
     {
@@ -99,7 +99,7 @@ export const actions: ButtonAction[] = [
                     position: "bottom"
                 });
             }
-        }, registrar: "Starcord"
+        }, registrar: "Onlycord"
     },
 
     {
@@ -111,7 +111,7 @@ export const actions: ButtonAction[] = [
                 variant: "success",
                 position: "bottom"
             });
-        }, registrar: "Starcord"
+        }, registrar: "Onlycord"
     },
 
     {
@@ -131,7 +131,7 @@ export const actions: ButtonAction[] = [
             if (choice) {
                 NavigationRouter.transitionToGuild(choice.id);
             }
-        }, registrar: "Starcord"
+        }, registrar: "Onlycord"
     }
 ];
 

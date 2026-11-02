@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 function settingsComponent() {
@@ -41,7 +41,7 @@ export default definePlugin({
     description: 'Fixes the annoying "We dropped the magnifying glass!" error.',
     tags: ["Utility"],
     settingsAboutComponent: () => settingsComponent(),
-    authors: [StarcordDevs.Jaxx],
+    authors: [OnlycordDevs.Jaxx],
     patches: [
         {
             find: '"SearchQueryStore";',

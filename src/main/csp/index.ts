@@ -70,8 +70,8 @@ export const CspPolicies: PolicyMap = {
     "usrbg.is-hardly.online": ImageSrc, // USRBG API
     "icons.duckduckgo.com": ImageSrc, // DuckDuckGo Favicon API (Reverse Image Search)
     "betterdiscord.app": ImageSrc, // BetterDiscord theme store thumbnails
-    "*.supabase.co": ConnectSrc, // Starcord user list (StarcordUsers plugin)
-    "wss://*.supabase.co": ConnectSrc, // Starcord user list live updates
+    "*.supabase.co": ConnectSrc, // Onlycord user list (OnlycordUsers plugin)
+    "wss://*.supabase.co": ConnectSrc, // Onlycord user list live updates
 
     // Tenor & Giphy, used by GifProviderSwitcher plugin and some themes
     "*.tenor.com": ImageAndMediaSrc,
@@ -123,7 +123,7 @@ const patchCsp = (headers: PolicyMap) => {
         pushDirective("script-src", "'unsafe-inline'", "'unsafe-eval'");
 
         for (const directive of ["style-src", "connect-src", "img-src", "font-src", "media-src", "worker-src"]) {
-            pushDirective(directive, "blob:", "data:", "vencord:", "vesktop:", "starcord:", "equibop:");
+            pushDirective(directive, "blob:", "data:", "vencord:", "vesktop:", "onlycord:", "equibop:");
         }
 
         for (const [host, directives] of Object.entries(NativeSettings.store.customCspRules)) {

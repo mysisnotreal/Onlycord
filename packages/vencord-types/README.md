@@ -1,11 +1,11 @@
-# Starcord Types
+# Onlycord Types
 
-Typings for Starcord's api, published to npm
+Typings for Onlycord's api, published to npm
 
 ```sh
-npm i @starcord/types
+npm i @onlycord/types
 
-yarn add @starcord/types
+yarn add @onlycord/types
 
-pnpm add @starcord/types
+pnpm add @onlycord/types
 ```

@@ -6,7 +6,7 @@
 
 import { Settings } from "@api/Settings";
 import { disableStyle, enableStyle } from "@api/Styles";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { AccessibilityStore } from "@webpack/common";
 
@@ -20,8 +20,8 @@ function forceDisable(flag: string) {
 
 export default definePlugin({
     name: "OptimizedDiscord",
-    description: "Removes Discord's animations when Optimized Discord is enabled in the Starcord settings.",
-    authors: [StarcordDevs.Starcord],
+    description: "Removes Discord's animations when Optimized Discord is enabled in the Onlycord settings.",
+    authors: [OnlycordDevs.Onlycord],
     required: true,
     hidden: true,
 

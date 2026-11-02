@@ -5,7 +5,7 @@
  */
 
 /**
- * re-applies the starcord patch to a freshly installed discord host
+ * re-applies the onlycord patch to a freshly installed discord host
  * version at the moment the native updater finishes writing it.
  *
  * hooks `discord_desktop_core.startup({ updater })` to capture the live
@@ -52,7 +52,7 @@ interface DiscordHostUpdater {
 interface DiscordUpdaterModule {
     getUpdater?(): DiscordHostUpdater | null | undefined;
     tryInitUpdater?(buildInfo: DiscordBuildInfo, repositoryUrl: string, useRustBspatch: boolean): boolean;
-    __starcordTryInitWrapped?: boolean;
+    __onlycordTryInitWrapped?: boolean;
 }
 
 interface DiscordDesktopCoreStartupOpts {
@@ -62,10 +62,10 @@ interface DiscordDesktopCoreStartupOpts {
 
 interface DiscordDesktopCore {
     startup?(opts: DiscordDesktopCoreStartupOpts): void;
-    __starcordStartupWrapped?: boolean;
+    __onlycordStartupWrapped?: boolean;
 }
 
-const error = (...args: unknown[]) => console.error("[Starcord:HostUpdate]", ...args);
+const error = (...args: unknown[]) => console.error("[Onlycord:HostUpdate]", ...args);
 
 const hookedUpdaters = new WeakSet<DiscordHostUpdater>();
 let hooked = false;
@@ -123,7 +123,7 @@ const resolveCommittedVersion = (updater: DiscordHostUpdater): number[] | undefi
     return undefined;
 };
 
-const retainStarcord = (updater: DiscordHostUpdater, reason: string) => {
+const retainOnlycord = (updater: DiscordHostUpdater, reason: string) => {
     try {
         const committed = resolveCommittedVersion(updater);
         const { rootPath } = updater;
@@ -158,7 +158,7 @@ const attachToUpdater = (updater: DiscordHostUpdater | null | undefined) => {
         return;
     }
 
-    updater.on?.("host-updated", () => retainStarcord(updater, "host-updated"));
+    updater.on?.("host-updated", () => retainOnlycord(updater, "host-updated"));
 
     /*
      * wrap the post-update relaunch entrypoints. retain runs after the
@@ -172,7 +172,7 @@ const attachToUpdater = (updater: DiscordHostUpdater | null | undefined) => {
         const bound = sync.bind(updater);
         updater.startCurrentVersionSync = (options?: StartCurrentVersionOptions) => {
             bound(options);
-            try { retainStarcord(updater, "startCurrentVersionSync"); } catch (e) { error(e); }
+            try { retainOnlycord(updater, "startCurrentVersionSync"); } catch (e) { error(e); }
         };
     }
     const async_ = updater.startCurrentVersion;
@@ -180,14 +180,14 @@ const attachToUpdater = (updater: DiscordHostUpdater | null | undefined) => {
         const bound = async_.bind(updater);
         updater.startCurrentVersion = async (queryOptions?: object, options?: StartCurrentVersionOptions) => {
             await bound(queryOptions, options);
-            try { retainStarcord(updater, "startCurrentVersion"); } catch (e) { error(e); }
+            try { retainOnlycord(updater, "startCurrentVersion"); } catch (e) { error(e); }
         };
     }
 };
 
 const wrapStartup = (coreExports: DiscordDesktopCore | null | undefined) => {
-    if (!coreExports?.startup || coreExports.__starcordStartupWrapped) return;
-    coreExports.__starcordStartupWrapped = true;
+    if (!coreExports?.startup || coreExports.__onlycordStartupWrapped) return;
+    coreExports.__onlycordStartupWrapped = true;
 
     const origStartup = coreExports.startup;
     coreExports.startup = function (opts, ...rest) {
@@ -196,12 +196,12 @@ const wrapStartup = (coreExports: DiscordDesktopCore | null | undefined) => {
             const inst = updaterModule?.getUpdater?.();
             if (inst) {
                 attachToUpdater(inst);
-            } else if (typeof updaterModule?.tryInitUpdater === "function" && !updaterModule.__starcordTryInitWrapped) {
+            } else if (typeof updaterModule?.tryInitUpdater === "function" && !updaterModule.__onlycordTryInitWrapped) {
                 /*
                  * updater not yet constructed at startup time. wrap the
                  * factory so we attach once vanilla creates it.
                  */
-                updaterModule.__starcordTryInitWrapped = true;
+                updaterModule.__onlycordTryInitWrapped = true;
                 const origTry = updaterModule.tryInitUpdater.bind(updaterModule);
                 updaterModule.tryInitUpdater = (buildInfo, repositoryUrl, useRustBspatch) => {
                     const ok = origTry(buildInfo, repositoryUrl, useRustBspatch);

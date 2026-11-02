@@ -482,7 +482,7 @@ export function Palette({ onClose, initialPage }: PaletteProps) {
 
     const footerHint = recordingFor
         ? "Press a key combo, Backspace to clear, Esc to cancel"
-        : currentPage?.title ?? "Starcord";
+        : currentPage?.title ?? "Onlycord";
 
     return (
         <div

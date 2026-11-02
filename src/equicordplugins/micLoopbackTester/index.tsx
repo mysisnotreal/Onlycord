@@ -5,7 +5,7 @@
  */
 
 import { UserAreaButton, UserAreaButtonFactory, UserAreaRenderProps } from "@api/UserArea";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { MediaEngineStore, React, UserStore, VoiceActions, VoiceStateStore } from "@webpack/common";
 
@@ -116,7 +116,7 @@ export default definePlugin({
     name: "MicLoopbackTester",
     description: "Adds mic loopback test icon to the user panel",
     tags: ["Utility", "Voice"],
-    authors: [StarcordDevs.benjii],
+    authors: [OnlycordDevs.benjii],
     dependencies: ["UserSettingsAPI", "UserAreaAPI"],
     userAreaButton: {
         icon: MicLoopbackIcon,

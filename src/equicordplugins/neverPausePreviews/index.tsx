@@ -17,14 +17,14 @@
 */
 
 import { Notice } from "@components/Notice";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "NeverPausePreviews",
     description: "Prevents in-call/PiP previews (screenshare, streams, etc) from pausing even if the client loses focus",
     tags: ["Media"],
-    authors: [StarcordDevs.vappstar],
+    authors: [OnlycordDevs.vappstar],
     settingsAboutComponent: () => (
         <Notice.Warning>
             This plugin will cause discord to use more resources than normal

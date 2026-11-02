@@ -62,8 +62,11 @@
             "@equicordplugins/*": [
                 "./src/equicordplugins/*"
             ],
-            "@starcordplugins/*": [
-                "./src/starcordplugins/*"
+            "@nightcordplugins/*": [
+                "./src/nightcordplugins/*"
+            ],
+            "@onlycordplugins/*": [
+                "./src/onlycordplugins/*"
             ]
         },
         "plugins": [

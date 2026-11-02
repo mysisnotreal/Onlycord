@@ -7,7 +7,7 @@
 import type { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { CloudUploadIcon } from "@components/Icons";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findComponentByCodeLazy } from "@webpack";
 import { Menu } from "@webpack/common";
@@ -38,7 +38,7 @@ const ctxMenuPatch: NavContextMenuPatchCallback = (children, props) => {
 export default definePlugin({
     name: "ClipUpload",
     description: "Adds a button to upload a local video file as a Discord clip.",
-    authors: [StarcordDevs.qdnx, StarcordDevs.BachLe2000, StarcordDevs.pandaptable, StarcordDevs.Nyro, StarcordDevs.Jahsohsani],
+    authors: [OnlycordDevs.qdnx, OnlycordDevs.BachLe2000, OnlycordDevs.pandaptable, OnlycordDevs.Nyro, OnlycordDevs.Jahsohsani],
     tags: ["Media", "Utility"],
 
     patches: [

@@ -12,7 +12,7 @@ import { Button } from "@components/Button";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Switch } from "@components/Switch";
 import { debounce } from "@shared/debounce";
-import { Devs, IS_MAC,StarcordDevs } from "@utils/constants";
+import { Devs, IS_MAC,OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { makeRange, OptionType } from "@utils/types";
 import type { Channel, ToastVariant, VoiceState } from "@vencord/discord-types";
@@ -848,7 +848,7 @@ export default definePlugin({
     description: "Adds a button near mute to join a random voice channel.",
     dependencies: ["UserAreaAPI"],
     tags: ["Fun", "Voice"],
-    authors: [StarcordDevs.xijexo, StarcordDevs.omaw, Devs.thororen],
+    authors: [OnlycordDevs.xijexo, OnlycordDevs.omaw, Devs.thororen],
     settings,
 
     userAreaButton: {

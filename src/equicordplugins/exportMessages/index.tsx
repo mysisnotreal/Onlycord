@@ -10,7 +10,7 @@ import { showNotification } from "@api/Notifications";
 import { definePluginSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { copyToClipboard } from "@utils/clipboard";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { showItemInFolder } from "@utils/native";
 import definePlugin, { OptionType } from "@utils/types";
 import { saveFile } from "@utils/web";
@@ -135,7 +135,7 @@ export default definePlugin({
     name: "ExportMessages",
     description: "Allows you to export any message to a file",
     tags: ["Chat", "Utility"],
-    authors: [StarcordDevs.veygax, StarcordDevs.dat_insanity],
+    authors: [OnlycordDevs.veygax, OnlycordDevs.dat_insanity],
     settings,
     contextMenus: {
         "message": messageContextMenuPatch

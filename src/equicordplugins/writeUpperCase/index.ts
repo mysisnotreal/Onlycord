@@ -6,7 +6,7 @@
 
 import { addMessagePreSendListener, MessageSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 const settings = definePluginSettings(
@@ -38,7 +38,7 @@ export default definePlugin({
     name: "WriteUpperCase",
     description: "Changes the first Letter of each Sentence in Message Inputs to Uppercase",
     tags: ["Appearance", "Customisation", "Chat"],
-    authors: [Devs.Samwich, StarcordDevs.KrystalSkull],
+    authors: [Devs.Samwich, OnlycordDevs.KrystalSkull],
     settings,
 
     start() {

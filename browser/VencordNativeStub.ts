@@ -124,14 +124,14 @@ window.VencordNative = {
     settings: {
         get: () => {
             try {
-                const settings = JSON.parse(localStorage.getItem("StarcordSettings") || "{}");
+                const settings = JSON.parse(localStorage.getItem("OnlycordSettings") ?? localStorage.getItem("StarcordSettings") || "{}");
                 return typeof settings === "string" ? JSON.parse(settings) : settings;
             } catch (e) {
                 console.error("Failed to parse settings from localStorage: ", e);
                 return {};
             }
         },
-        set: async (s: Settings) => localStorage.setItem("StarcordSettings", JSON.stringify(s)),
+        set: async (s: Settings) => localStorage.setItem("OnlycordSettings", JSON.stringify(s)),
         getSettingsDir: async () => "LocalStorage",
         openFolder: async () => Promise.reject("settings:openFolder is not supported on web"),
     },

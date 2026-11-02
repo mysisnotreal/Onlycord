@@ -7,7 +7,7 @@
 import { definePluginSettings } from "@api/Settings";
 import { CodeBlock } from "@components/CodeBlock";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
 import { waitFor } from "@webpack";
@@ -349,7 +349,7 @@ export default definePlugin({
     name: "MarkdownTables",
     description: "Render GitHub-style markdown tables in Discord messages.",
     tags: ["Chat", "Appearance"],
-    authors: [StarcordDevs.yafyx],
+    authors: [OnlycordDevs.yafyx],
     managedStyle,
     settings,
     patches: [

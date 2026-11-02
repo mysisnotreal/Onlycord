@@ -20,7 +20,7 @@ import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings } from "@api/Settings";
 import { UserAreaRenderProps } from "@api/UserArea";
 import { getUserSettingLazy } from "@api/UserSettings";
-import starcordToolbox from "@equicordplugins/starcordToolbox";
+import onlycordToolbox from "@equicordplugins/onlycordToolbox";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy, findComponentByCodeLazy } from "@webpack";
@@ -42,10 +42,10 @@ const settings = definePluginSettings({
         description: "Where to show the game activity toggle button",
         options: [
             { label: "Next to Mute/Deafen", value: "PANEL", default: true },
-            { label: "Starcord Toolbox", value: "TOOLBOX" }
+            { label: "Onlycord Toolbox", value: "TOOLBOX" }
         ],
         get hidden() {
-            return !isPluginEnabled(starcordToolbox.name);
+            return !isPluginEnabled(onlycordToolbox.name);
         }
     }
 });
@@ -91,7 +91,7 @@ function GameActivityToggleButton(props: UserAreaRenderProps) {
 
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-    if (location !== "PANEL" && isPluginEnabled(starcordToolbox.name)) return null;
+    if (location !== "PANEL" && isPluginEnabled(onlycordToolbox.name)) return null;
 
     const buttonProps = {
         tooltipText: showCurrentGame ? "Disable Game Activity" : "Enable Game Activity",

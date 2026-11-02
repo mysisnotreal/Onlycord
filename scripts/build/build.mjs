@@ -77,7 +77,7 @@ const globNativesPlugin = {
         });
 
         build.onLoad({ filter, namespace: "import-natives" }, async () => {
-            const pluginDirs = ["plugins", "equicordplugins", "starcordplugins", "userplugins"];
+            const pluginDirs = ["plugins", "equicordplugins", "onlycordplugins", "nightcordplugins", "userplugins"];
             let code = "";
             let natives = "\n";
             let i = 0;
@@ -230,11 +230,11 @@ await buildOrWatchAll(buildConfigs);
 
 await Promise.all([
     writeFile("dist/desktop/package.json", JSON.stringify({
-        name: "starcord",
+        name: "onlycord",
         main: "patcher.js"
     })),
     writeFile("dist/equibop/package.json", JSON.stringify({
-        name: "starcord",
+        name: "onlycord",
         main: "main.js"
     }))
 ]);

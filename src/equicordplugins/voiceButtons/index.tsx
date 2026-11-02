@@ -5,7 +5,7 @@
  */
 
 import { Flex } from "@components/Flex";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { User } from "@vencord/discord-types";
 import { React } from "@webpack/common";
@@ -17,7 +17,7 @@ export default definePlugin({
     name: "VoiceButtons",
     description: "Quickly DM, mute, or deafen any user right from the voice-call panel.",
     tags: ["Servers", "Utility", "Voice"],
-    authors: [StarcordDevs.nicola02nb, StarcordDevs.omaw],
+    authors: [OnlycordDevs.nicola02nb, OnlycordDevs.omaw],
     settings,
     patches: [
         {

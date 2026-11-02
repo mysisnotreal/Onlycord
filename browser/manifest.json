@@ -1,9 +1,9 @@
 {
     "manifest_version": 3,
     "minimum_chrome_version": "111",
-    "name": "Starcord Web",
+    "name": "Onlycord Web",
     "description": "The other cutest Discord mod now in your browser",
-    "author": "Starcord",
+    "author": "Onlycord",
     "icons": {
         "128": "icon.png"
     },
@@ -32,7 +32,7 @@
                 "*://*.discord.com/*"
             ],
             "js": [
-                "dist/Starcord.js"
+                "dist/Onlycord.js"
             ],
             "all_frames": true,
             "world": "MAIN"

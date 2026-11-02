@@ -9,7 +9,7 @@ import "./style.css";
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings } from "@api/Settings";
 import { VideoIcon } from "@components/Icons";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { isNonNullish } from "@utils/guards";
 import definePlugin, { OptionType } from "@utils/types";
 import { Message } from "@vencord/discord-types";
@@ -101,7 +101,7 @@ export default definePlugin({
     name: "ExternalPlayer",
     description: "Open videos and audio in an external media player like mpv.",
     tags: ["Media"],
-    authors: [StarcordDevs.creations],
+    authors: [OnlycordDevs.creations],
     settings,
 
     patches: [

@@ -31,7 +31,7 @@ function BackupAndRestoreTab() {
         <SettingsTab>
             <Heading className={Margins.top16}>Backup & Restore</Heading>
             <Paragraph className={Margins.bottom20}>
-                Import and export your Starcord settings as a JSON file. This allows you to easily transfer your settings to another device, or recover them after reinstalling Starcord or Discord.
+                Import and export your Onlycord settings as a JSON file. This allows you to easily transfer your settings to another device, or recover them after reinstalling Onlycord or Discord.
             </Paragraph>
 
             <Notice.Warning className={Margins.bottom20}>

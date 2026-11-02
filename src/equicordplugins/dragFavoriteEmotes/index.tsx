@@ -18,7 +18,7 @@
 
 import "./styles.css";
 
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { classes } from "@utils/misc";
 import definePlugin from "@utils/types";
@@ -43,7 +43,7 @@ type EmojiDescriptor = {
 
 export default definePlugin({
     name: "DragFavoriteEmotes",
-    authors: [StarcordDevs.PWall],
+    authors: [OnlycordDevs.PWall],
     description: "Adds the ability to change the order of your favorite emotes",
     tags: ["Customisation", "Chat", "Emotes"],
     patches: [

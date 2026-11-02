@@ -7,7 +7,7 @@
 import "./style.css";
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { setManaBaseRadioGroup } from "./components/LanguageSelectionModal";
@@ -20,7 +20,7 @@ const VoiceMessageButtonWrapped = ErrorBoundary.wrap(VoiceMessageButton, { noop:
 
 export default definePlugin({
     name: "VoiceMessageTranscriber",
-    authors: [Devs.TheSun, StarcordDevs.tt],
+    authors: [Devs.TheSun, OnlycordDevs.tt],
     description: "On-device transcriptions for voice messages powered by Whisper",
     tags: ["Chat", "Media", "Utility", "Voice"],
     patches: [

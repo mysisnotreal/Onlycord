@@ -7,7 +7,7 @@
 import "./style.css";
 
 import ErrorBoundary from "@components/ErrorBoundary";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { useAuthorizationStore } from "./lib/stores/AuthorizationStore";
@@ -21,7 +21,7 @@ export default definePlugin({
     description: "Show off songs on your profile",
     dependencies: ["ProfileCollectionsAPI"],
     tags: ["Appearance", "Media"],
-    authors: [StarcordDevs.nexpid],
+    authors: [OnlycordDevs.nexpid],
     settings,
     patches: [
         // Full profile modal sections (lazy loaded)

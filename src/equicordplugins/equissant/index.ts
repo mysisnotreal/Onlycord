@@ -6,7 +6,7 @@
 
 import { AudioPlayerInterface, createAudioPlayer } from "@api/AudioPlayer";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 let clickCount = 0;
@@ -34,7 +34,7 @@ export default definePlugin({
     name: "Equissant",
     description: "Crossant every specified amount of clicks :trolley:",
     tags: ["Fun"],
-    authors: [StarcordDevs.SomeAspy, Devs.thororen],
+    authors: [OnlycordDevs.SomeAspy, Devs.thororen],
     dependencies: ["AudioPlayerAPI"],
     settings,
     start() {

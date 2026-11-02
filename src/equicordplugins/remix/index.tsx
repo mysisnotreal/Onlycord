@@ -6,7 +6,7 @@
 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { PaintbrushIcon } from "@components/Icons";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { extractAndLoadChunksLazy } from "@webpack";
 import { ChannelStore, closeModal, DraftType, FluxDispatcher, Menu, openModal, PendingReplyStore, SelectedChannelStore, UploadHandler } from "@webpack/common";
@@ -71,7 +71,7 @@ export default definePlugin({
     name: "RemixRevived",
     description: "Revives Remix and brings it to Desktop",
     tags: ["Customisation", "Fun"],
-    authors: [StarcordDevs.MrDiamond, StarcordDevs.meowabyte],
+    authors: [OnlycordDevs.MrDiamond, OnlycordDevs.meowabyte],
     contextMenus: {
         "channel-attach": UploadContextMenuPatch,
         "message": MessageContextMenuPatch,

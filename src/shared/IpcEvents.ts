@@ -45,8 +45,8 @@ export const enum IpcEvents {
     CSP_REQUEST_ADD_OVERRIDE = "VencordCspRequestAddOverride",
 
     OPEN_THEMES_FOLDER = "VencordOpenThemesFolder",
-    GET_BETTERDISCORD_THEMES = "StarcordGetBetterDiscordThemes",
-    INSTALL_BETTERDISCORD_THEME = "StarcordInstallBetterDiscordTheme",
+    GET_BETTERDISCORD_THEMES = "OnlycordGetBetterDiscordThemes",
+    INSTALL_BETTERDISCORD_THEME = "OnlycordInstallBetterDiscordTheme",
     OPEN_SETTINGS_FOLDER = "VencordOpenSettingsFolder",
     GET_RENDERER_CSS = "VencordGetRendererCss",
     RENDERER_CSS_UPDATE = "VencordRendererCssUpdate",

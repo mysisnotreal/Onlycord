@@ -25,14 +25,14 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
 import { Paragraph } from "@components/Paragraph";
-import { platformName } from "@equicordplugins/starcordHelper/utils";
+import { platformName } from "@equicordplugins/onlycordHelper/utils";
 import customIdle from "@plugins/customIdle";
 import { gitHash, gitHashShort, gitRemote } from "@shared/vencordUserAgent";
-import { CONTRIB_ROLE_ID, Devs, DONOR_ROLE_ID, GUILD_ID, STARCORD_TEAM, SUPPORT_CHANNEL_ID, SUPPORT_CHANNEL_IDS, VC_CONTRIB_ROLE_ID, VC_DONOR_ROLE_ID, VC_GUILD_ID, VC_REGULAR_ROLE_ID, VENCORD_CONTRIB_ROLE_ID } from "@utils/constants";
+import { CONTRIB_ROLE_ID, Devs, DONOR_ROLE_ID, GUILD_ID, ONLYCORD_TEAM, SUPPORT_CHANNEL_ID, SUPPORT_CHANNEL_IDS, VC_CONTRIB_ROLE_ID, VC_DONOR_ROLE_ID, VC_GUILD_ID, VC_REGULAR_ROLE_ID, VENCORD_CONTRIB_ROLE_ID } from "@utils/constants";
 import { sendMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
-import { isAnyPluginDev, isStarcordGuild, isStarcordSupport, isSupportChannel, tryOrElse } from "@utils/misc";
+import { isAnyPluginDev, isOnlycordGuild, isOnlycordSupport, isSupportChannel, tryOrElse } from "@utils/misc";
 import { makeCodeblock } from "@utils/text";
 import definePlugin from "@utils/types";
 import { RenderModalProps } from "@vencord/discord-types";
@@ -48,9 +48,9 @@ const TrustedRolesIds = [
     VC_CONTRIB_ROLE_ID, // Vencord Contributor
     VC_REGULAR_ROLE_ID, // Vencord Regular
     VC_DONOR_ROLE_ID, // Vencord Donor
-    STARCORD_TEAM, // Starcord Team
-    DONOR_ROLE_ID, // Starcord Donor
-    CONTRIB_ROLE_ID, // Starcord Contributor
+    ONLYCORD_TEAM, // Onlycord Team
+    DONOR_ROLE_ID, // Onlycord Donor
+    CONTRIB_ROLE_ID, // Onlycord Contributor
     VENCORD_CONTRIB_ROLE_ID, // Vencord Contributor
 ];
 
@@ -126,7 +126,7 @@ async function generateDebugInfoMessage() {
         : platformName();
 
     const info = {
-        Starcord:
+        Onlycord:
             `v${VERSION} • [${gitHashShort}](<https://github.com/${gitRemote}/commit/${gitHash}>)` +
             `${IS_EQUIBOP ? "" : SettingsPlugin.getVersionInfo()} - ${Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${clientString}`,
@@ -152,7 +152,7 @@ async function generateDebugInfoMessage() {
     const commonIssues = {
         "Activity Sharing Disabled": tryOrElse(() => !ShowCurrentGame.getSetting(), false),
         "Link Embeds Disabled": tryOrElse(() => !ShowEmbeds.getSetting(), false),
-        "Starcord DevBuild": !IS_STANDALONE,
+        "Onlycord DevBuild": !IS_STANDALONE,
         "Equibop DevBuild": IS_EQUIBOP && tryOrElse(() => VesktopNative.app.isDevBuild?.(), false),
         "Platform Spoofed": spoofInfo?.spoofed ?? false,
         "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugin),
@@ -279,7 +279,7 @@ function DevBuildConfirmModal(props: RenderModalProps) {
             }}
         >
             <div>
-                <Paragraph>You are using a custom build of Starcord, which we do not provide support for!</Paragraph>
+                <Paragraph>You are using a custom build of Onlycord, which we do not provide support for!</Paragraph>
 
                 <Paragraph className={Margins.top8}>
                     We only provide support for <Link href="https://equicord.org/download">official builds</Link>.
@@ -312,17 +312,17 @@ export default definePlugin({
 
     commands: [
         {
-            name: "starcord-debug",
-            description: "Send Starcord debug info",
+            name: "onlycord-debug",
+            description: "Send Onlycord debug info",
             // @ts-ignore
-            predicate: ctx => isAnyPluginDev(UserStore.getCurrentUser()?.id) || isStarcordGuild(ctx?.guild?.id, true),
+            predicate: ctx => isAnyPluginDev(UserStore.getCurrentUser()?.id) || isOnlycordGuild(ctx?.guild?.id, true),
             execute: async () => ({ content: await generateDebugInfoMessage() })
         },
         {
-            name: "starcord-plugins",
-            description: "Send Starcord plugin list",
+            name: "onlycord-plugins",
+            description: "Send Onlycord plugin list",
             // @ts-ignore
-            predicate: ctx => isAnyPluginDev(UserStore.getCurrentUser()?.id) || isStarcordGuild(ctx?.guild?.id, true),
+            predicate: ctx => isAnyPluginDev(UserStore.getCurrentUser()?.id) || isOnlycordGuild(ctx?.guild?.id, true),
             execute: async () => {
                 const channelId = SelectedChannelStore.getChannelId();
                 const pluginList = generatePluginList();
@@ -366,17 +366,17 @@ export default definePlugin({
 
         const buttons = [] as JSX.Element[];
 
-        const starcordSupport = isStarcordGuild(props.message.channel_id) && isStarcordSupport(props.message.author.id);
+        const onlycordSupport = isOnlycordGuild(props.message.channel_id) && isOnlycordSupport(props.message.author.id);
 
-        if (starcordSupport && isSupportChannel(props.channel.id) && PermissionStore.can(PermissionsBits.SEND_MESSAGES, props.channel)) {
-            if (props.message.content.includes("/starcord-debug") || props.message.content.includes("/starcord-plugins")) {
+        if (onlycordSupport && isSupportChannel(props.channel.id) && PermissionStore.can(PermissionsBits.SEND_MESSAGES, props.channel)) {
+            if (props.message.content.includes("/onlycord-debug") || props.message.content.includes("/onlycord-plugins")) {
                 buttons.push(
                     <Button
                         key="vc-dbg"
                         variant="secondary"
                         onClick={async () => sendMessage(props.channel.id, { content: await generateDebugInfoMessage() })}
                     >
-                        Run /starcord-debug
+                        Run /onlycord-debug
                     </Button>,
                     <Button
                         key="vc-plg-list"
@@ -396,7 +396,7 @@ export default definePlugin({
                             }
                         }}
                     >
-                        Run /starcord-plugins
+                        Run /onlycord-plugins
                     </Button>
                 );
             }
@@ -414,7 +414,7 @@ export default definePlugin({
 
         return (
             <Card variant="warning" className={Margins.top8} defaultPadding>
-                Please do not private message Starcord & Vencord plugin developers for support!
+                Please do not private message Onlycord & Vencord plugin developers for support!
                 <br />
                 Instead, use the support channel: {Parser.parse("https://discord.com/channels/1173279886065029291/1297590739911573585")}
                 {!ChannelStore.getChannel(SUPPORT_CHANNEL_ID) && " (Click the link to join)"}

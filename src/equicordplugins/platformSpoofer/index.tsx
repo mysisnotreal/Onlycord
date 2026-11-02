@@ -8,7 +8,7 @@ import { HeaderBarButton } from "@api/HeaderBar";
 import { showNotice } from "@api/Notices";
 import { definePluginSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { relaunch } from "@utils/native";
 import definePlugin from "@utils/types";
 import { Menu, Popout, useRef, useState } from "@webpack/common";
@@ -109,7 +109,7 @@ export default definePlugin({
     name: "PlatformSpoofer",
     description: "Spoof what platform or device you're on, using the button next to the help button in the top right",
     tags: ["Utility"],
-    authors: [StarcordDevs.Drag, StarcordDevs.neoarz],
+    authors: [OnlycordDevs.Drag, OnlycordDevs.neoarz],
     required: true,
     hidden: true,
     settings,

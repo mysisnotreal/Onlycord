@@ -24,11 +24,11 @@ import { ButtonProps } from "@vencord/discord-types";
 import { showToast } from "@webpack/common";
 
 export function DonateButton({
-    starcord = false,
+    onlycord = false,
     className,
     ...props
-}: Partial<ButtonProps> & { starcord?: boolean; }) {
-    const link = starcord ? "https://github.com/sponsors/thororen1234" : "https://github.com/sponsors/Vendicated";
+}: Partial<ButtonProps> & { onlycord?: boolean; }) {
+    const link = onlycord ? "https://github.com/sponsors/thororen1234" : "https://github.com/sponsors/Vendicated";
     return (
         <Button
             {...props}

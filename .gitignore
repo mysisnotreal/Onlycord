@@ -7,7 +7,7 @@ node_modules
 
 *.exe
 vencord_installer
-starcord_installer
+onlycord_installer
 
 .idea
 .DS_Store
@@ -42,5 +42,5 @@ misc/bundle
 # intl scripts
 misc/scripts
 
-# starcord installer build files
+# onlycord installer build files
 installer/.build

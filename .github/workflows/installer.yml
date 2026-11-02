@@ -32,7 +32,7 @@ jobs:
             - name: Install PyInstaller
               run: python -m pip install pyinstaller==6.16.0 pillow==11.1.0
 
-            - name: Build Starcord and stage installer files
+            - name: Build Onlycord and stage installer files
               run: python installer/build.py stage --no-restore
 
             - name: Package installer
@@ -41,5 +41,5 @@ jobs:
             - name: Upload installer
               uses: actions/upload-artifact@v4
               with:
-                  name: StarCordInstaller-${{ runner.os }}
+                  name: OnlycordInstaller-${{ runner.os }}
                   path: release/*

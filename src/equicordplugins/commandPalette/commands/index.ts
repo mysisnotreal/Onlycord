@@ -8,16 +8,16 @@ import { registerCommands } from "../api/registry";
 import { loadCustomCommands, registerCustomCommands } from "./custom";
 import { discordCommands } from "./discordActions";
 import { navigationCommands } from "./navigation";
+import { onlycordCommands } from "./onlycord";
 import { pluginCommands } from "./pluginManagement";
 import { sendDmCommand } from "./sendDm";
-import { starcordCommands } from "./starcord";
 
 export async function registerBuiltinCommands() {
     registerCommands("CommandPalette.builtin", [
         ...navigationCommands,
         ...discordCommands,
         ...pluginCommands,
-        ...starcordCommands,
+        ...onlycordCommands,
         sendDmCommand
     ]);
 

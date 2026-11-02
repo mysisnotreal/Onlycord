@@ -7,7 +7,7 @@
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { HeaderBarButton } from "@api/HeaderBar";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { getCurrentChannel } from "@utils/discord";
 import definePlugin from "@utils/types";
@@ -312,7 +312,7 @@ const ChannelContextPatch: NavContextMenuPatchCallback = (children, args: { chan
 
 export default definePlugin({
     name: "SidebarChat",
-    authors: [Devs.Joona, StarcordDevs.justjxke],
+    authors: [Devs.Joona, OnlycordDevs.justjxke],
     description: "Open a channel or DM as a sidebar or a popout.",
     tags: ["Appearance", "Chat", "Servers"],
     dependencies: ["HeaderBarAPI"],
@@ -555,7 +555,7 @@ const RenderPopout = ErrorBoundary.wrap(({ channel, name, windowKey }: { channel
         <PopoutWindow
             withTitleBar
             windowKey={windowKey}
-            title={name || "Starcord"}
+            title={name || "Onlycord"}
             channelId={channel.id}
         >
             <div className={cl("window")}>

@@ -13,7 +13,7 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { EyeIcon } from "@components/Icons";
 import pinDms from "@plugins/pinDms";
 import { isPinned } from "@plugins/pinDms/data";
-import { StarcordDevs } from "@utils/constants";
+import { OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin, { OptionType } from "@utils/types";
 import { Channel, Message } from "@vencord/discord-types";
@@ -104,7 +104,7 @@ export default definePlugin({
     description: "Temporarily hide messages and DMs until you restart.",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat", "Utility"],
-    authors: [StarcordDevs.yash],
+    authors: [OnlycordDevs.yash],
     patches: [
         {
             find: '"dm-quick-launcher"===',

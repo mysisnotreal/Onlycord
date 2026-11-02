@@ -12,7 +12,7 @@ import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings, migratePluginSettings, migratePluginToSettings } from "@api/Settings";
 import { ShieldIcon, WarningIcon } from "@components/Icons";
 import customRPC from "@plugins/customRPC";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { StandingState } from "@vencord/discord-types/enums";
 import { findByCodeLazy } from "@webpack";
@@ -192,18 +192,18 @@ export default definePlugin({
     dependencies: ["CommandsAPI", "HeaderBarAPI"],
     authors: [
         Devs.thororen,
-        StarcordDevs.nyx,
-        StarcordDevs.Naibuu,
-        StarcordDevs.keircn,
-        StarcordDevs.SerStars,
-        StarcordDevs.mart,
-        StarcordDevs.omaw,
+        OnlycordDevs.nyx,
+        OnlycordDevs.Naibuu,
+        OnlycordDevs.keircn,
+        OnlycordDevs.SerStars,
+        OnlycordDevs.mart,
+        OnlycordDevs.omaw,
         Devs.Samwich,
         Devs.AutumnVN,
-        StarcordDevs.auggeeo,
-        StarcordDevs.secp192k1,
-        StarcordDevs.tie,
-        StarcordDevs.itzmeshadow999
+        OnlycordDevs.auggeeo,
+        OnlycordDevs.secp192k1,
+        OnlycordDevs.tie,
+        OnlycordDevs.itzmeshadow999
     ],
     settings,
     contextMenus: {

@@ -14,7 +14,7 @@ import { Heart } from "@components/Heart";
 import { PencilIcon } from "@components/Icons";
 import { Margins } from "@components/margins";
 import { Notice } from "@components/Notice";
-import { Devs, StarcordDevs } from "@utils/constants";
+import { Devs, OnlycordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { openInviteModal } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
@@ -66,7 +66,7 @@ export default definePlugin({
     name: "UserPFP",
     description: "Allows you to set local static or animated avatars for yourself and other users",
     tags: ["Appearance", "Customisation", "Servers"],
-    authors: [StarcordDevs.nexpid, Devs.thororen, StarcordDevs.soapphia, StarcordDevs.sketchmyname],
+    authors: [OnlycordDevs.nexpid, Devs.thororen, OnlycordDevs.soapphia, OnlycordDevs.sketchmyname],
     settings,
     data,
     settingsAboutComponent: () => (
